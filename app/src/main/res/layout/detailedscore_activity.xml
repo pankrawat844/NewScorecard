@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relViewDetScore"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/ds_lay_Title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="?ACTIVITY_HEADER_BG_COLOR"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ds_ibBack"
+            android:layout_width="0.0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:background="?ACTIVITY_HEADER_BG_COLOR"
+            android:contentDescription="@string/app_name"
+            android:gravity="start|center"
+            android:paddingLeft="10.0dip"
+            android:paddingTop="10.0dip"
+            android:paddingRight="10.0dip"
+            android:paddingBottom="10.0dip"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+            android:tint="?ACTIVITY_HEADER_TEXT_COLOR" />
+
+        <customfont.Gotham
+            android:id="@+id/ds_tvTitle"
+            android:layout_width="0.0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:gravity="start|center"
+            android:paddingLeft="10.0dip"
+            android:paddingRight="10.0dip"
+            android:text="@string/detail_sc"
+            android:textColor="?ACTIVITY_HEADER_TEXT_COLOR"
+            android:textSize="20.0sp" />
+
+        <LinearLayout
+            android:layout_width="0.0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ds_btnRefresh"
+                android:layout_width="0.0px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.15"
+                android:background="?ACTIVITY_HEADER_BG_COLOR"
+                android:gravity="center"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_refresh_white_24dp"
+                android:tint="?ACTIVITY_HEADER_TEXT_COLOR" />
+
+            <TextView
+                android:id="@+id/ds_tvStatus"
+                android:layout_width="0.0px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.1"
+                android:gravity="center"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:scaleType="fitCenter"
+                android:textColor="?ACTIVITY_HEADER_TEXT_COLOR"
+                android:textSize="18.0sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/ds_lay_Title">
+
+        <ScrollView
+            android:id="@+id/ds_scrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ds_lay_scoreText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TableLayout
+                    android:id="@+id/ds_lay_tab_matches"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+
+                <TabHost
+                    android:id="@+id/tab_host"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical">
+
+                        <TabWidget
+                            android:id="@android:id/tabs"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="?MATCH_TITLE_BG_COLOR"
+                            android:gravity="center"
+                            android:textSize="20.0sp" />
+
+                        <FrameLayout
+                            android:id="@android:id/tabcontent"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent">
+
+                            <TableLayout
+                                android:id="@+id/faketab"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" />
+
+                            <TableLayout
+                                android:id="@+id/tab1"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" />
+
+                            <TableLayout
+                                android:id="@+id/tab2"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" />
+
+                            <TableLayout
+                                android:id="@+id/tab3"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" />
+
+                            <TableLayout
+                                android:id="@+id/tab4"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </TabHost>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</RelativeLayout>

@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">Live Cricket Score</string>
+
+    <string name="SEND_REQUEST">&amp;#8673</string>
+    <string name="SENT_REQUEST">&amp;#8593</string>
+    <string name="GET_RESPONSE">&amp;#8675</string>
+    <string name="GOT_RESPONSE">&amp;#8595</string>
+    <string name="SEND_ERR">&amp;#8670</string>
+    <string name="GET_ERR">&amp;#8671</string>
+    <string name="not_connected">NOT connected</string>
+    <string name="description">Description</string>
+    <string name="batsmen">BATSMEN</string>
+    <string name="r">R</string>
+    <string name="b">B</string>
+    <string name="_4s">4s</string>
+    <string name="_6s">6s</string>
+    <string name="sr">SR</string>
+    <string name="defaultvalue">-</string>
+    <string name="refresh_score">↺</string>
+    <string name="refresh_setting">|</string>
+    <string name="bowlers">BOWLERS</string>
+    <string name="o">O</string>
+    <string name="m">M</string>
+    <string name="w">W</string>
+    <string name="econ">Econ</string>
+    <string name="notconnected">You are NOT conncted</string>
+    <string name="connected">You are conncted</string>
+    <string name="teamname">team_name</string>
+    <string name="teamid">team_id</string>
+    <string name="space">&amp;nbsp;</string>
+    <string name="keeper">&amp;#0134</string>
+    <string name="battingteamid">batting_team_id</string>
+    <string name="runs">runs</string>
+    <string name="wickets">wickets</string>
+    <string name="overs">overs</string>
+    <string name="match1">1</string>
+    <string name="match2">2</string>
+    <string name="SPINNER_TEXT">Select the Match</string>
+    <string name="banner_ad_unit_id">ca-app-pub-9702497160678952/6862592425</string>
+    <string name="novalue">--</string>
+    <string name="detail_sc">Scorecard</string>
+    <string name="detail_sc_btn">D</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="settings">Settings</string>
+    <string name="theme_preview">Theme preview : %s</string>
+    <string name="current_font">Current font : %s</string>
+    <string name="gray">Gray (Default)</string>
+    <string name="light_blue">Light Blue</string>
+    <string name="indigo">Blue Gray</string>
+    <string name="white">White(Test Match)</string>
+    <string name="black">Black(Battery saver)</string>
+    <string name="theme">Theme :</string>
+    <string name="bangladesh">Bangladesh</string>
+    <string name="australia">Australia</string>
+    <string name="afghanistan">Afghanistan</string>
+    <string name="england">England</string>
+    <string name="india">India</string>
+    <string name="ireland">Ireland</string>
+    <string name="new_zealand">New-Zealand</string>
+    <string name="pakistan">Pakistan</string>
+    <string name="south_africa">South Africa</string>
+    <string name="sri_lanka">Sri Lanka</string>
+    <string name="west_indies">West Indies</string>
+    <string name="zimbabwe">Zimbabwe</string>
+    <string name="selectmatch">Select Match...</string>
+    <string name="selectmatch1">Select Match 1</string>
+    <string name="selectmatch2">Select Match 2</string>
+    <string name="none">None</string>
+    <string name="title_activity_bottom_navigation">BottomNavigation</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
