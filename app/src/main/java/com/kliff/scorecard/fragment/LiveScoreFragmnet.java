@@ -130,11 +130,11 @@ public class LiveScoreFragmnet extends Fragment {
     }
 
     private void startRepeatingTask() {
-        this.mHandler.postDelayed(this.m_Runnable, (long) nwUtil.refresh_rate);
+        mHandler.postDelayed(m_Runnable, (long) nwUtil.refresh_rate);
     }
 
     private void stopRepeatingTask() {
-        this.mHandler.removeCallbacks(this.m_Runnable);
+        mHandler.removeCallbacks(m_Runnable);
     }
 
     private void executeURL(int Command, String URL) {
@@ -177,9 +177,9 @@ public class LiveScoreFragmnet extends Fragment {
 
     private void fillMatchListAndMiniScoreCBZ(String result) {
         if (result == null) {
-            this.tvCBZstatus.setText(tableUtil.fromHtml(getString(R.string.GET_ERR)));
+            tvCBZstatus.setText(tableUtil.fromHtml(getString(R.string.GET_ERR)));
         } else if (result.isEmpty()) {
-            this.tvCBZstatus.setText(tableUtil.fromHtml(getString(R.string.GET_ERR)));
+            tvCBZstatus.setText(tableUtil.fromHtml(getString(R.string.GET_ERR)));
         } else {
             try {
                 nwUtil.CBZMatchListAndMiniscoreJASONData = result;
@@ -259,7 +259,7 @@ public class LiveScoreFragmnet extends Fragment {
                     JSONObject jsonObject = data.getJSONObject(j);
                     String start_date = jsonObject.getJSONObject("match").getString("start_date");
 
-                    // Gerring Data
+
                     Date c = Calendar.getInstance().getTime();
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                     String formattedDate = df.format(c);
