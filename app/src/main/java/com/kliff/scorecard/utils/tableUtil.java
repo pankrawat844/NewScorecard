@@ -1,4 +1,4 @@
-package com.kliff.scorecard;
+package com.kliff.scorecard.utils;
 
 import android.os.Build.VERSION;
 import android.text.Html;
@@ -10,6 +10,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
+
+import com.kliff.scorecard.R;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 

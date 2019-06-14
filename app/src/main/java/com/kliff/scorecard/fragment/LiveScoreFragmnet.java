@@ -1,4 +1,4 @@
-package com.kliff.scorecard;
+package com.kliff.scorecard.fragment;
 
 
 import android.content.DialogInterface;
@@ -13,11 +13,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.kliff.scorecard.R;
+import com.kliff.scorecard.activites.CricInfoDetailScoreActivity;
 import com.kliff.scorecard.adapter.MatchListAdapter;
 import com.kliff.scorecard.adapter.RecyclerItemClickListener;
 import com.kliff.scorecard.model.MatchList;
+import com.kliff.scorecard.utils.Utils;
+import com.kliff.scorecard.utils.nwUtil;
+import com.kliff.scorecard.utils.tableUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,13 +38,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
 /**
@@ -86,6 +90,7 @@ public class LiveScoreFragmnet extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setRetainInstance(true);
         recyclerView = view.findViewById(R.id.recylerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         fillMatchListESPN(nwUtil.ESPNMatchListJASONData);
@@ -101,10 +106,10 @@ public class LiveScoreFragmnet extends Fragment {
 //                nwUtil.selectedESPNMatchID = list.get(position).getMatchid();
                 getActivity().finish();
                 startActivity(intent);
-
             }
         }));
     }
+
     /* renamed from: com.live_cric_scores.MainActivity$6 */
 
     public void onResume() {
@@ -244,16 +249,7 @@ public class LiveScoreFragmnet extends Fragment {
             nwUtil.ESPNMatchListJASONData = result;
 //                this.tvESPNstatus.setText(tableUtil.fromHtml(getString(R.string.GET_RESPONSE)));
             JSONArray matches = new JSONObject(result).getJSONArray("matches");
-            nwUtil.ESPNMatchList.clear();
-            nwUtil.ESPNMatchIDList.clear();
-            if (matches.length() > 0) {
-                nwUtil.ESPNMatchList.add(getString(R.string.none));
-                nwUtil.ESPNMatchIDList.add(getString(R.string.none));
-                IsMatchListAvailableESPN = true;
-            } else if (IsMatchListAvailableESPN) {
-                IsMatchListAvailableESPN = false;
-                Toast.makeText(getActivity(), "No Match available!", Toast.LENGTH_SHORT).show();
-            }
+
             list.clear();
             for (int i = 0; i < matches.length(); i++) {
                 JSONObject series = matches.getJSONObject(i).getJSONObject(matches.getJSONObject(i).names().getString(0));

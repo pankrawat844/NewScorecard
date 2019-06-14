@@ -1,10 +1,16 @@
-package com.kliff.scorecard;
+package com.kliff.scorecard.utils;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TableLayout;
+
+import com.kliff.scorecard.R;
+import com.kliff.scorecard.activites.CricInfoDetailScoreActivity;
+import com.kliff.scorecard.utils.Utils;
+import com.kliff.scorecard.utils.tableUtil;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 

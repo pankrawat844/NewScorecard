@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relViewMiniScore"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/ds_lay_Title"
@@ -22,41 +22,38 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/ds_lay_Title"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:background="@color/colorPrimary">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ds_lay_Title">
 
-        <customfont.GothamBold
-            android:id="@+id/liveScore"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Live Score"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            android:gravity="center"
-            android:textColor="#fff"/>
+            android:layout_height="wrap_content">
 
-        <customfont.GothamBold
-            android:id="@+id/allMatches"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="All Matches"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            android:gravity="center"
-            android:textColor="#fff"/>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                app:tabGravity="fill"
+                app:tabMode="fixed">
 
-    </LinearLayout>
+            </com.google.android.material.tabs.TabLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabs" />
 
     <FrameLayout
         android:id="@+id/scoreFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tabs"/>
+        android:layout_below="@id/viewPager" />
 
 </RelativeLayout>

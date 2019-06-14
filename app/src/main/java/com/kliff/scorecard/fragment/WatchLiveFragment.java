@@ -2,7 +2,6 @@ package com.kliff.scorecard.fragment;
 
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -35,32 +34,30 @@ import com.kliff.scorecard.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewsFragment extends Fragment {
+public class WatchLiveFragment extends Fragment {
 
-
-    WebView mWebview;
-    ProgressDialog progressDialog;
+    private WebView mWebview;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news, container, false);
+        return inflater.inflate(R.layout.fragment_watch_live, container, false);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initBrowser(view);
-        mWebview.loadUrl("https://primetimesnews.com/5016-7/");
+        setRetainInstance(true);
 
+        init(view);
+        mWebview.loadUrl("https://www.cricpslt20.net/sarvar-2/");
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void initBrowser(View view) {
-
+    private void init(View view) {
         CookieSyncManager.createInstance(getActivity());
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.removeAllCookies(null);
@@ -78,16 +75,13 @@ public class NewsFragment extends Fragment {
         webSettings.setAppCacheEnabled(false);
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         webSettings.setGeolocationDatabasePath(getActivity().getFilesDir().getPath());
-        mWebview.setWebViewClient(new WebClient());
+        mWebview.setWebViewClient(new WatchLiveFragment.WebClient());
         mWebview.clearCache(true);
         mWebview.setWebChromeClient(new WebChromeClient());
 
         mWebview.getSettings().setSupportZoom(true);
         mWebview.getSettings().setBuiltInZoomControls(true);
         mWebview.getSettings().setDisplayZoomControls(false);
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading....");
-        progressDialog.show();
     }
 
     private boolean handleUri(final Uri uri) {
@@ -99,7 +93,7 @@ public class NewsFragment extends Fragment {
         // Based on some condition you need to determine if you are going to load the url
         // in your web view itself or in a browser.
         // You can use `host` or `scheme` or any part of the `uri` to decide.
-        if (host.contains("primetimesnews.com")) {
+        if (host.contains("https://www.cricpslt20.net/sarvar-2/")) {
             // Returning false means that you are going to load this url in the webView itself
             return false;
         } else {
@@ -124,16 +118,14 @@ public class NewsFragment extends Fragment {
 
         }
 
-
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-            progressDialog.show();
+
             final Uri uri = request.getUrl();
             return handleUri(uri);
 //            return false;
         }
-
 
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
@@ -153,9 +145,6 @@ public class NewsFragment extends Fragment {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            progressDialog.dismiss();
-
         }
-
     }
 }

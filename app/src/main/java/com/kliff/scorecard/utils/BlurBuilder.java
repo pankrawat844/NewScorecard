@@ -1,4 +1,4 @@
-package com.kliff.scorecard;
+package com.kliff.scorecard.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;

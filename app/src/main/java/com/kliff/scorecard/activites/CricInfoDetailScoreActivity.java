@@ -1,4 +1,4 @@
-package com.kliff.scorecard;
+package com.kliff.scorecard.activites;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,12 +10,19 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.kliff.scorecard.R;
+import com.kliff.scorecard.utils.Utils;
+import com.kliff.scorecard.utils.cricinfodetailscore;
+import com.kliff.scorecard.utils.nwUtil;
+import com.kliff.scorecard.utils.tableUtil;
 
 public class CricInfoDetailScoreActivity extends Activity {
     private static final String TAG = "com.live_cric_scores";
@@ -27,7 +34,6 @@ public class CricInfoDetailScoreActivity extends Activity {
     public TabHost host;
     public Handler mHandler;
     ImageButton btnRefresh;
-    private TextView ds_tvStatus;
     private SwipeRefreshLayout swipeContainer;
 
     public static CricInfoDetailScoreActivity getInstance() {
@@ -41,7 +47,7 @@ public class CricInfoDetailScoreActivity extends Activity {
         setContentView(R.layout.detailedscore_activity);
         Utils.changeBackground(this);
         Utils.setAdsOnTime(this);
-        this.swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        this.swipeContainer = findViewById(R.id.swipeContainer);
         this.swipeContainer.setOnRefreshListener(this.refreshSwipe);
 //        this.swipeContainer.setColorSchemeResources(17170459, 17170452, 17170456, 17170454);
         if (nwUtil.addOn) {
@@ -50,19 +56,18 @@ public class CricInfoDetailScoreActivity extends Activity {
 //            ((RelativeLayout) findViewById(R.id.relViewDetScore)).removeView(findViewById(R.id.myAdView));
         }
         ((TextView) findViewById(R.id.ds_tvTitle)).setTypeface(Utils.fontFace);
-        findViewById(R.id.ds_ibBack).setOnClickListener(this.OnBackPress);
-        this.btnRefresh = (ImageButton) findViewById(R.id.ds_btnRefresh);
+        ImageView back = findViewById(R.id.ds_ibBack);
+        back.setOnClickListener(this.OnBackPress);
+        back.setImageResource(R.drawable.ic_arrow_back_white_24dp);
+        this.btnRefresh = findViewById(R.id.ds_btnRefresh);
         this.btnRefresh.setOnClickListener(this.refreshAllMacthtListener);
-        this.ds_tvStatus = (TextView) findViewById(R.id.ds_tvStatus);
-        Utils.setViewEnabled(this.ds_tvStatus, false);
         this.mHandler = new Handler();
-        this.host = (TabHost) findViewById(R.id.tab_host);
+        this.host = findViewById(R.id.tab_host);
         this.host.setup();
         if (nwUtil.isConnected(getApplicationContext())) {
             refreshMatchESPN(getIntent().getStringExtra("matchid"));
             return;
         }
-        this.ds_tvStatus.setText(tableUtil.fromHtml(getString(R.string.SEND_ERR)));
         Toast.makeText(getApplicationContext(), "You are not connected !", Toast.LENGTH_SHORT).show();
         Utils.changeToTheme(this, 4, false);
     }
@@ -94,7 +99,7 @@ public class CricInfoDetailScoreActivity extends Activity {
     public void onBackPressed() {
 //        super.onBackPressed();
         finish();
-        startActivity(new Intent(CricInfoDetailScoreActivity.this,BottomNavigation.class));
+        startActivity(new Intent(CricInfoDetailScoreActivity.this, BottomNavigation.class));
         overridePendingTransition(R.anim.slide_enter, R.anim.slide_exit);
     }
 
@@ -109,12 +114,9 @@ public class CricInfoDetailScoreActivity extends Activity {
     private void refreshMatchESPN(String matchId) {
         if (matchId != null && !matchId.equals("-1")) {
             Log.d(TAG, "onItemSelected :" + String.format(nwUtil.URL_DETAILSCORE_ESPN_FORMAT, new Object[]{matchId}));
-            this.ds_tvStatus.setText(tableUtil.fromHtml(getString(R.string.SEND_REQUEST)));
             Utils.setAnimation(this.btnRefresh);
             if (new DisplayMatchesESPN().execute(new String[]{String.format(nwUtil.URL_DETAILSCORE_ESPN_FORMAT, new Object[]{matchId})}) != null) {
-                this.ds_tvStatus.setText(tableUtil.fromHtml(getString(R.string.SENT_REQUEST)));
             } else {
-                this.ds_tvStatus.setText(tableUtil.fromHtml(getString(R.string.SEND_ERR)));
             }
         }
     }
@@ -140,7 +142,6 @@ public class CricInfoDetailScoreActivity extends Activity {
                 if (nwUtil.isConnected(CricInfoDetailScoreActivity.this.getApplicationContext())) {
                     CricInfoDetailScoreActivity.this.refreshMatchESPN(getIntent().getStringExtra("matchid"));
                 } else {
-                    CricInfoDetailScoreActivity.this.ds_tvStatus.setText(tableUtil.fromHtml(CricInfoDetailScoreActivity.this.getString(R.string.SEND_ERR)));
                     Toast.makeText(CricInfoDetailScoreActivity.this.getApplicationContext(), "You are not connected !", 0).show();
                 }
                 CricInfoDetailScoreActivity.this.mHandler.postDelayed(CricInfoDetailScoreActivity.this.m_Runnable, (long) nwUtil.refresh_rate);
@@ -172,7 +173,6 @@ public class CricInfoDetailScoreActivity extends Activity {
             ds_lay_tab_matches.removeAllViews();
             if (result != null) {
                 try {
-                    CricInfoDetailScoreActivity.this.ds_tvStatus.setText(tableUtil.fromHtml(CricInfoDetailScoreActivity.this.getString(R.string.GET_RESPONSE)));
                     cricinfodetailscore.onPostExecute(result, ds_lay_tab_matches, CricInfoDetailScoreActivity.this.host);
                     for (int i = 0; i < CricInfoDetailScoreActivity.this.host.getTabWidget().getChildCount(); i++) {
                         TextView tv = (TextView) CricInfoDetailScoreActivity.this.host.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
@@ -181,19 +181,16 @@ public class CricInfoDetailScoreActivity extends Activity {
                         tv.setTypeface(Typeface.createFromAsset(CricInfoDetailScoreActivity.this.getAssets(), Utils.fonrString));
                         tv.setGravity(17);
                     }
-                    CricInfoDetailScoreActivity.this.ds_tvStatus.setText(tableUtil.fromHtml(CricInfoDetailScoreActivity.this.getString(R.string.GOT_RESPONSE)));
                     Utils.clearAnimation(CricInfoDetailScoreActivity.this.btnRefresh);
                     return;
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e("com.live_cric_scores:" + getClass().toString(), e.getMessage(), e.getCause());
-                    CricInfoDetailScoreActivity.this.ds_tvStatus.setText(tableUtil.fromHtml(CricInfoDetailScoreActivity.this.getString(R.string.GET_ERR)));
                     Utils.clearAnimation(CricInfoDetailScoreActivity.this.btnRefresh);
                     return;
                 }
             }
             tableUtil.addNoDataToTable(ds_lay_tab_matches);
-            CricInfoDetailScoreActivity.this.ds_tvStatus.setText(tableUtil.fromHtml(CricInfoDetailScoreActivity.this.getString(R.string.GET_ERR)));
             Utils.clearAnimation(CricInfoDetailScoreActivity.this.btnRefresh);
         }
     }

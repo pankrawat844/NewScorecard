@@ -1,21 +1,16 @@
-package com.kliff.scorecard;
+package com.kliff.scorecard.worker;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TableLayout;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
-import java.util.concurrent.ThreadPoolExecutor;
+import com.kliff.scorecard.utils.nwUtil;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.WorkerThread;
 import androidx.work.Data;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;

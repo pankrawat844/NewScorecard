@@ -14,7 +14,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/ds_ibBack"
             android:layout_width="0.0px"
             android:layout_height="wrap_content"
@@ -27,10 +27,10 @@
             android:paddingRight="10.0dip"
             android:paddingBottom="10.0dip"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
-            android:tint="?ACTIVITY_HEADER_TEXT_COLOR" />
+            app:srcCompat="@drawable/ic_arrow_back_white_24dp"
+         />
 
-        <customfont.Gotham
+        <com.kliff.scorecard.customfont.Gotham
             android:id="@+id/ds_tvTitle"
             android:layout_width="0.0px"
             android:layout_height="wrap_content"
@@ -63,18 +63,7 @@
                 android:src="@drawable/ic_refresh_white_24dp"
                 android:tint="?ACTIVITY_HEADER_TEXT_COLOR" />
 
-            <TextView
-                android:id="@+id/ds_tvStatus"
-                android:layout_width="0.0px"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.1"
-                android:gravity="center"
-                android:paddingLeft="10.0dip"
-                android:paddingRight="10.0dip"
-                android:scaleType="fitCenter"
-                android:textColor="?ACTIVITY_HEADER_TEXT_COLOR"
-                android:textSize="18.0sp" />
+
         </LinearLayout>
     </LinearLayout>
 

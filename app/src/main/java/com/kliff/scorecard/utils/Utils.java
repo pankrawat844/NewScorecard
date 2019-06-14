@@ -1,4 +1,4 @@
-package com.kliff.scorecard;
+package com.kliff.scorecard.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import androidx.core.content.ContextCompat;
+
+import com.kliff.scorecard.R;
 
 public final class Utils {
     public static int ACTIVITY_HEADER_BG_COLOR = 0;
@@ -72,19 +74,19 @@ public final class Utils {
     public static ArrayList<TabSpec> tabSpecList = new ArrayList();
     public static int themeCurrent = -1;
 
-    static void setAnimation(View view) {
+    public static void setAnimation(View view) {
         Log.d("TAg", "setAnimation -start : view : " + view.getVisibility() + "focus : " + view.hasFocus());
         animation.setRepeatCount(-1);
         animation.setDuration(2000);
         view.startAnimation(animation);
     }
 
-    static void clearAnimation(View view) {
+    public static void clearAnimation(View view) {
         view.clearAnimation();
         Log.d("TAG", "clearAnimation -start : view : " + view.getVisibility() + "focus : " + view.hasFocus());
     }
 
-    static void changeToTheme(Activity activity, int theme, boolean selfCall) {
+    public static void changeToTheme(Activity activity, int theme, boolean selfCall) {
         if (activity != null) {
             setSettingValue(activity.getApplicationContext());
             themeCurrent = theme;
@@ -100,7 +102,7 @@ public final class Utils {
         }
     }
 
-    static void onActivityCreateSetTheme(Activity activity) {
+    public static void onActivityCreateSetTheme(Activity activity) {
         getStoredSettingValue(activity);
         switch (5) {
             case 1:
@@ -201,7 +203,7 @@ public final class Utils {
         SETTING_TEXT_COLOR = typedValue.data;
     }
 
-    static void changeBackground(Activity activity) {
+    public static void changeBackground(Activity activity) {
         try {
             View content = activity.findViewById(R.id.relViewMiniScore).getRootView();
             Bitmap bm = null;
@@ -224,7 +226,7 @@ public final class Utils {
         }
     }
 
-    static void setAdsOnTime(Context context) {
+    public static void setAdsOnTime(Context context) {
         Calendar rightNow = Calendar.getInstance();
         nwUtil.currentTimeSince1970 = (rightNow.getTimeInMillis() + ((long) (rightNow.get(15) + rightNow.get(16)))) / 1000;
         if (nwUtil.currentTimeSince1970 - nwUtil.AdsClickedTimeSince1970 > nwUtil.ADONTIMEOUT_SECONDSs) {

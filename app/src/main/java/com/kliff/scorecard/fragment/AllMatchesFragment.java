@@ -1,4 +1,4 @@
-package com.kliff.scorecard;
+package com.kliff.scorecard.fragment;
 
 
 import android.content.DialogInterface;
@@ -15,9 +15,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kliff.scorecard.activites.CricInfoDetailScoreActivity;
+import com.kliff.scorecard.R;
+import com.kliff.scorecard.utils.Utils;
 import com.kliff.scorecard.adapter.MatchListAdapter;
 import com.kliff.scorecard.adapter.RecyclerItemClickListener;
 import com.kliff.scorecard.model.MatchList;
+import com.kliff.scorecard.utils.nwUtil;
+import com.kliff.scorecard.utils.tableUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -85,6 +90,7 @@ public class AllMatchesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setRetainInstance(true);
         recyclerView = view.findViewById(R.id.recylerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         fillMatchListESPN(nwUtil.ESPNMatchListJASONData);

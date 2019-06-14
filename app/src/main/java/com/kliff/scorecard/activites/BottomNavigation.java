@@ -1,16 +1,16 @@
-package com.kliff.scorecard;
+package com.kliff.scorecard.activites;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
-import com.kliff.scorecard.adapter.ViewPagerAdapter;
+import com.kliff.scorecard.R;
+import com.kliff.scorecard.fragment.MainFragment;
 import com.kliff.scorecard.fragment.NewsFragment;
 
 public class BottomNavigation extends AppCompatActivity {
@@ -40,10 +40,20 @@ public class BottomNavigation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation);
+
         getSupportFragmentManager().beginTransaction().add(R.id.frame, new MainFragment()).commit();
-        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setItemIconTintList(null);
 
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        getSupportFragmentManager().beginTransaction().add(R.id.frame, new MainFragment()).commit();
+        navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setItemIconTintList(null);
     }
 }
