@@ -1,4 +1,4 @@
-package com.kliff.scorecard.activites;
+package com.kliff.scorecard.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -49,12 +49,14 @@ public class CricInfoDetailScoreActivity extends Activity {
         Utils.setAdsOnTime(this);
         this.swipeContainer = findViewById(R.id.swipeContainer);
         this.swipeContainer.setOnRefreshListener(this.refreshSwipe);
-//        this.swipeContainer.setColorSchemeResources(17170459, 17170452, 17170456, 17170454);
+
+/*        this.swipeContainer.setColorSchemeResources(17170459, 17170452, 17170456, 17170454);
         if (nwUtil.addOn) {
-//            ((AdView) findViewById(R.id.myAdView)).loadAd(new Builder().build());
+            ((AdView) findViewById(R.id.myAdView)).loadAd(new Builder().build());
         } else {
-//            ((RelativeLayout) findViewById(R.id.relViewDetScore)).removeView(findViewById(R.id.myAdView));
+            ((RelativeLayout) findViewById(R.id.relViewDetScore)).removeView(findViewById(R.id.myAdView));
         }
+        */
         ((TextView) findViewById(R.id.ds_tvTitle)).setTypeface(Utils.fontFace);
         ImageView back = findViewById(R.id.ds_ibBack);
         back.setOnClickListener(this.OnBackPress);
@@ -142,11 +144,11 @@ public class CricInfoDetailScoreActivity extends Activity {
                 if (nwUtil.isConnected(CricInfoDetailScoreActivity.this.getApplicationContext())) {
                     CricInfoDetailScoreActivity.this.refreshMatchESPN(getIntent().getStringExtra("matchid"));
                 } else {
-                    Toast.makeText(CricInfoDetailScoreActivity.this.getApplicationContext(), "You are not connected !", 0).show();
+                    //Toast.makeText(CricInfoDetailScoreActivity.this.getApplicationContext(), "You are not connected !", 0).show();
                 }
-                CricInfoDetailScoreActivity.this.mHandler.postDelayed(CricInfoDetailScoreActivity.this.m_Runnable, (long) nwUtil.refresh_rate);
+                CricInfoDetailScoreActivity.this.mHandler.postDelayed(CricInfoDetailScoreActivity.this.m_Runnable, 3000);
             } catch (Throwable th) {
-                CricInfoDetailScoreActivity.this.mHandler.postDelayed(CricInfoDetailScoreActivity.this.m_Runnable, (long) nwUtil.refresh_rate);
+                CricInfoDetailScoreActivity.this.mHandler.postDelayed(CricInfoDetailScoreActivity.this.m_Runnable, 3000);
             }
         }
     }

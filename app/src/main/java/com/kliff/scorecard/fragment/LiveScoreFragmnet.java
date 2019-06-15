@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.kliff.scorecard.R;
-import com.kliff.scorecard.activites.CricInfoDetailScoreActivity;
+import com.kliff.scorecard.activities.CricInfoDetailScoreActivity;
 import com.kliff.scorecard.adapter.MatchListAdapter;
 import com.kliff.scorecard.adapter.RecyclerItemClickListener;
 import com.kliff.scorecard.model.MatchList;
@@ -51,20 +51,32 @@ public class LiveScoreFragmnet extends Fragment {
     private static boolean IsMatcheListESPNRan = false;
     private static boolean IsMiniScoreESPNRan = false;
     private static MainFragment MainActivity;
-    private final Runnable m_Runnable = new LiveScoreFragmnet.C04552();
     private final View.OnClickListener refreshAllMacthtListener = new View.OnClickListener() {
         public void onClick(View v) {
             if (nwUtil.ESPNMatchList.size() == 0) {
-                LiveScoreFragmnet.this.executeURL(2, "http://api.espncricinfo.com/4/site/mobile_home?&key=c3e20ac4-4ade-4624-8d96-e19beb44ec68");
+                executeURL(2, "http://api.espncricinfo.com/4/site/mobile_home?&key=c3e20ac4-4ade-4624-8d96-e19beb44ec68");
             } else {
                 LiveScoreFragmnet.this.refreshMatchESPN(nwUtil.selectedESPNMatchID);
             }
         }
     };
-
     ImageButton btnRefresh;
     RecyclerView recyclerView;
     private Handler mHandler;
+    private final Runnable m_Runnable = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                LiveScoreFragmnet.this.stopRepeatingTask();
+                LiveScoreFragmnet.this.executeURL(2, "http://api.espncricinfo.com/4/site/mobile_home?&key=c3e20ac4-4ade-4624-8d96-e19beb44ec68");
+
+//            MainFragment.this.btnRefresh.performClick();
+
+            } finally {
+                LiveScoreFragmnet.this.mHandler.postDelayed(LiveScoreFragmnet.this.m_Runnable, 3000);
+            }
+        }
+    };
     private ImageButton btnDetailScoreCBZ;
     private ImageButton btnDetailScoreESPN;
     private Button btnSelectMatch1;
@@ -76,8 +88,7 @@ public class LiveScoreFragmnet extends Fragment {
     private TextView tvCBZstatus;
     private TextView tvESPNSpinner;
     private TextView tvESPNstatus;
-
-
+    MatchListAdapter adapter;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,7 +97,6 @@ public class LiveScoreFragmnet extends Fragment {
     }
 
     /* renamed from: com.live_cric_scores.MainActivity$3 */
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -115,11 +125,10 @@ public class LiveScoreFragmnet extends Fragment {
     public void onResume() {
         Log.d(TAG, " : onResume-->startRepeatingTask");
         super.onResume();
-        if (nwUtil.auto_refresh) {
-            startRepeatingTask();
+
+        startRepeatingTask();
 //            this.btnRefresh.setImageResource(R.drawable.ic_refresh_white_36dp);
-            return;
-        }
+
 //        this.btnRefresh.setImageResource(R.drawable.ic_refresh_white_36dp);
     }
 
@@ -130,7 +139,7 @@ public class LiveScoreFragmnet extends Fragment {
     }
 
     private void startRepeatingTask() {
-        mHandler.postDelayed(m_Runnable, (long) nwUtil.refresh_rate);
+        mHandler.postDelayed(m_Runnable, 3000);
     }
 
     private void stopRepeatingTask() {
@@ -212,8 +221,6 @@ public class LiveScoreFragmnet extends Fragment {
                                 bowlingTeamName = team1.getString("name");
                                 batingTeamName = team2.getString("name");
                             }
-
-
                         }
                         this.tvCBZstatus.setText(tableUtil.fromHtml(getString(R.string.GOT_RESPONSE)));
                     }
@@ -234,14 +241,6 @@ public class LiveScoreFragmnet extends Fragment {
         }
         Log.d(TAG, "matchId : " + matchId + "is invalid, disable refresh button ?");
     }
-
-
-//    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        Log.d(TAG, " : onRestoreInstanceState");
-//        super.onRestoreInstanceState(savedInstanceState);
-//        restoreState(savedInstanceState);
-//    }
 
     private void fillMatchListESPN(String result) {
 
@@ -312,7 +311,22 @@ public class LiveScoreFragmnet extends Fragment {
             }
 //                this.tvESPNstatus.setText(tableUtil.fromHtml(getString(R.string.GOT_RESPONSE)));
 
-            recyclerView.setAdapter(new MatchListAdapter(list));
+
+            adapter = new MatchListAdapter(list);
+            recyclerView.setAdapter(adapter);
+
+            /*if(adapter!=null) {
+//                recyclerView.removeAllViews();
+                adapter = null;
+                adapter = new MatchListAdapter(list);
+                recyclerView.setAdapter(adapter);
+            }
+                else
+            {
+                adapter = new MatchListAdapter(list);
+                recyclerView.setAdapter(adapter);
+            }*/
+
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("com.live_cric_scores:" + getClass().toString(), e.getMessage(), e.getCause());
@@ -321,21 +335,6 @@ public class LiveScoreFragmnet extends Fragment {
 
     }
 
-
-    /* renamed from: com.live_cric_scores.MainActivity$2 */
-    class C04552 implements Runnable {
-        C04552() {
-        }
-
-        public void run() {
-            try {
-                LiveScoreFragmnet.this.stopRepeatingTask();
-//            MainFragment.this.btnRefresh.performClick();
-            } finally {
-                LiveScoreFragmnet.this.mHandler.postDelayed(LiveScoreFragmnet.this.m_Runnable, (long) nwUtil.refresh_rate);
-            }
-        }
-    }
 
     /* renamed from: com.live_cric_scores.MainActivity$5 */
     class C04585 implements DialogInterface.OnClickListener {

@@ -1,4 +1,4 @@
-package com.kliff.scorecard.activites;
+package com.kliff.scorecard.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;

@@ -1,15 +1,17 @@
-package com.kliff.scorecard.activites;
+package com.kliff.scorecard.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kliff.scorecard.R;
 import com.kliff.scorecard.fragment.MainFragment;
 import com.kliff.scorecard.fragment.NewsFragment;
+import com.kliff.scorecard.fragment.WatchLiveFragment;
 
 public class BottomNavigation extends AppCompatActivity {
 
@@ -19,16 +21,24 @@ public class BottomNavigation extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selected = null;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame, new MainFragment()).commit();
-                    return true;
+                    selected = new MainFragment();
+                    break;
 
                 case R.id.navigation_notifications:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame, new NewsFragment()).commit();
-                    return true;
+                    selected = new NewsFragment();
+                    break;
+
+                case R.id.navigation_watch:
+                    selected = new WatchLiveFragment();
+                    break;
             }
-            return false;
+            assert selected != null;
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frame, selected).commit();
+            return true;
         }
     };
 
@@ -37,9 +47,11 @@ public class BottomNavigation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.frame, new MainFragment()).commit();
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        navigation.setItemIconTintList(null);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame, new MainFragment())
+                .commit();
     }
 }

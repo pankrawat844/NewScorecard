@@ -7,9 +7,7 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TableLayout;
 
 import com.kliff.scorecard.R;
-import com.kliff.scorecard.activites.CricInfoDetailScoreActivity;
-import com.kliff.scorecard.utils.Utils;
-import com.kliff.scorecard.utils.tableUtil;
+import com.kliff.scorecard.activities.CricInfoDetailScoreActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

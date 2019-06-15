@@ -15,12 +15,19 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kliff.scorecard.activites.CricInfoDetailScoreActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.kliff.scorecard.R;
-import com.kliff.scorecard.utils.Utils;
+import com.kliff.scorecard.activities.CricInfoDetailScoreActivity;
 import com.kliff.scorecard.adapter.MatchListAdapter;
 import com.kliff.scorecard.adapter.RecyclerItemClickListener;
 import com.kliff.scorecard.model.MatchList;
+import com.kliff.scorecard.utils.Utils;
 import com.kliff.scorecard.utils.nwUtil;
 import com.kliff.scorecard.utils.tableUtil;
 
@@ -30,13 +37,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,16 +44,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 public class AllMatchesFragment extends Fragment {
 
     private static final String TAG = "com.live_cric_scores";
-    public static boolean IsMatchListAvailableESPN = true;
-    public static boolean IsMatcheListAndMiniScoreCBZRan = false;
-    public static boolean IsMatcheListESPNRan = false;
-    public static boolean IsMiniScoreESPNRan = false;
+    private static boolean IsMatchListAvailableESPN = true;
+    private static boolean IsMatcheListAndMiniScoreCBZRan = false;
+    private static boolean IsMatcheListESPNRan = false;
+    private static boolean IsMiniScoreESPNRan = false;
     private static MainFragment MainActivity;
     private final Runnable m_Runnable = new AllMatchesFragment.C04552();
     private final View.OnClickListener refreshAllMacthtListener = new View.OnClickListener() {
         public void onClick(View v) {
             if (nwUtil.ESPNMatchList.size() == 0) {
-                AllMatchesFragment.this.executeURL(2, "http://api.espncricinfo.com/4/site/mobile_home?&key=c3e20ac4-4ade-4624-8d96-e19beb44ec68");
+                executeURL(2, "http://api.espncricinfo.com/4/site/mobile_home?&key=c3e20ac4-4ade-4624-8d96-e19beb44ec68");
             } else {
                 AllMatchesFragment.this.refreshMatchESPN(nwUtil.selectedESPNMatchID);
             }
@@ -160,7 +160,6 @@ public class AllMatchesFragment extends Fragment {
             i = R.string.SENT_REQUEST;
         }
         return;
-
     }
 
     /* renamed from: com.live_cric_scores.MainActivity$1 */
@@ -210,8 +209,6 @@ public class AllMatchesFragment extends Fragment {
                                 bowlingTeamName = team1.getString("name");
                                 batingTeamName = team2.getString("name");
                             }
-
-
                         }
                         this.tvCBZstatus.setText(tableUtil.fromHtml(getString(R.string.GOT_RESPONSE)));
                     }
@@ -249,7 +246,9 @@ public class AllMatchesFragment extends Fragment {
                 IsMatchListAvailableESPN = false;
                 Toast.makeText(getActivity(), "No Match available!", 0).show();
             }
+
             list.clear();
+
             for (int i = 0; i < matches.length(); i++) {
                 JSONObject series = matches.getJSONObject(i).getJSONObject(matches.getJSONObject(i).names().getString(0));
                 JSONArray data = series.getJSONArray("data");
@@ -258,7 +257,6 @@ public class AllMatchesFragment extends Fragment {
 
                     String team1_Sname = series.getJSONObject("team").getJSONObject(data.getJSONObject(j).getJSONObject("match").getString("team1_id")).getString("n");
                     String team2_Sname = series.getJSONObject("team").getJSONObject(data.getJSONObject(j).getJSONObject("match").getString("team2_id")).getString("n");
-
 
                     matchList.setTeam_id1(data.getJSONObject(j).getJSONObject("match").getString("team1_id"));
                     matchList.setTeam_id2(data.getJSONObject(j).getJSONObject("match").getString("team2_id"));
@@ -277,8 +275,8 @@ public class AllMatchesFragment extends Fragment {
                             matchList.setTeam2(team1_Sname);
                             matchList.setTeam2_img("http://api.espncricinfo.com" + series.getJSONObject("team").getJSONObject(data.getJSONObject(j).getJSONObject("match").getString("team1_id")).getString("f"));
                             matchList.setTeam1_img("http://api.espncricinfo.com" + series.getJSONObject("team").getJSONObject(data.getJSONObject(j).getJSONObject("match").getString("team2_id")).getString("f"));
-
                         }
+
                         matchList.setScore1(data.getJSONObject(j).getJSONArray("innings").optJSONObject(0).getString("runs") + "/" + data.getJSONObject(j).getJSONArray("innings").getJSONObject(0).getString("wickets"));
                         if (!data.getJSONObject(j).getJSONArray("innings").getJSONObject(0).getString("scheduled_overs").equals("0")) {
                             matchList.setWicket1(data.getJSONObject(j).getJSONArray("innings").getJSONObject(0).getString("overs") + "/" + data.getJSONObject(j).getJSONArray("innings").getJSONObject(0).getString("scheduled_overs"));
@@ -286,21 +284,17 @@ public class AllMatchesFragment extends Fragment {
                         } else
                             matchList.setWicket1(data.getJSONObject(j).getJSONArray("innings").getJSONObject(0).getString("overs"));
 
-
                         matchList.setScore2(data.getJSONObject(j).getJSONArray("innings").optJSONObject(1).getString("runs") + "/" + data.getJSONObject(j).getJSONArray("innings").getJSONObject(1).getString("wickets"));
                         if (!data.getJSONObject(j).getJSONArray("innings").getJSONObject(1).getString("scheduled_overs").equals("0"))
                             matchList.setWicket2(data.getJSONObject(j).getJSONArray("innings").getJSONObject(1).getString("overs") + "/" + data.getJSONObject(j).getJSONArray("innings").getJSONObject(1).getString("scheduled_overs"));
                         else
                             matchList.setWicket2(data.getJSONObject(j).getJSONArray("innings").getJSONObject(1).getString("overs"));
-
                     }
 
                     list.add(matchList);
-
                 }
             }
 //                this.tvESPNstatus.setText(tableUtil.fromHtml(getString(R.string.GOT_RESPONSE)));
-
             recyclerView.setAdapter(new MatchListAdapter(list));
         } catch (Exception e) {
             e.printStackTrace();
@@ -310,7 +304,6 @@ public class AllMatchesFragment extends Fragment {
 
     }
 
-
     /* renamed from: com.live_cric_scores.MainActivity$2 */
     class C04552 implements Runnable {
         C04552() {
@@ -319,9 +312,11 @@ public class AllMatchesFragment extends Fragment {
         public void run() {
             try {
                 AllMatchesFragment.this.stopRepeatingTask();
+                executeURL(2, "http://api.espncricinfo.com/4/site/mobile_home?&key=c3e20ac4-4ade-4624-8d96-e19beb44ec68");
+
 //            MainFragment.this.btnRefresh.performClick();
             } finally {
-                AllMatchesFragment.this.mHandler.postDelayed(AllMatchesFragment.this.m_Runnable, (long) nwUtil.refresh_rate);
+                AllMatchesFragment.this.mHandler.postDelayed(AllMatchesFragment.this.m_Runnable, 3000);
             }
         }
     }
@@ -407,5 +402,4 @@ public class AllMatchesFragment extends Fragment {
             }
         }
     }
-
 }

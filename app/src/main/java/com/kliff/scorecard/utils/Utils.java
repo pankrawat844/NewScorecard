@@ -277,7 +277,7 @@ public final class Utils {
         if (context != null) {
             sharedpreferences = PreferenceManager.getDefaultSharedPreferences(context);
             nwUtil.auto_refresh = sharedpreferences.getBoolean("AutoRefresh", true);
-            nwUtil.refresh_rate = sharedpreferences.getInt("RefreshRate", 30000);
+            nwUtil.refresh_rate = sharedpreferences.getInt("RefreshRate", 5000);
             themeCurrent = sharedpreferences.getInt("ThemeCurrent", 0);
             fontCurrent = sharedpreferences.getInt("FontCurrent", 0);
             fonrString = getFontString(fontCurrent);

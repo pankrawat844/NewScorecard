@@ -49,10 +49,9 @@ public class WatchLiveFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setRetainInstance(true);
 
         init(view);
-        mWebview.loadUrl("https://www.cricpslt20.net/sarvar-2/");
+        mWebview.loadUrl("http://hotstar11111.livemee.com");
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -93,16 +92,19 @@ public class WatchLiveFragment extends Fragment {
         // Based on some condition you need to determine if you are going to load the url
         // in your web view itself or in a browser.
         // You can use `host` or `scheme` or any part of the `uri` to decide.
-        if (host.contains("https://www.cricpslt20.net/sarvar-2/")) {
-            // Returning false means that you are going to load this url in the webView itself
-            return false;
-        } else {
-            // Returning true means that you need to handle what to do with the url
-            // e.g. open web page in a Browser
-            final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-            return true;
+        if (host != null) {
+            if (host.contains("http://hotstar11111.livemee.com")) {
+                // Returning false means that you are going to load this url in the webView itself
+                return false;
+            } else {
+                // Returning true means that you need to handle what to do with the url
+                // e.g. open web page in a Browser
+                final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                return true;
+            }
         }
+        return false;
     }
 
     private class WebClient extends WebViewClient {

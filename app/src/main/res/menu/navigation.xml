@@ -4,14 +4,16 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/tab_selected_bg"
-        android:title="Score"
-       />
-
+        android:title="Score" />
 
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/tab_selected_bg1"
-        android:title="News"
-       />
+        android:title="News" />
+
+    <item
+        android:id="@+id/navigation_watch"
+        android:icon="@drawable/ic_watch_black_24dp"
+        android:title="Watch Live" />
 
 </menu>
