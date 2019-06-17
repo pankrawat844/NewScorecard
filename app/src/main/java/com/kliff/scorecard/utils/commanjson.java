@@ -2,8 +2,6 @@ package com.kliff.scorecard.utils;
 
 import android.widget.TableLayout;
 
-import com.kliff.scorecard.utils.tableUtil;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 

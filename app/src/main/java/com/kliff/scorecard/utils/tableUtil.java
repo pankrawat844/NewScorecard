@@ -30,7 +30,7 @@ public final class tableUtil {
     private tableUtil() {
     }
 
-    public static Spanned fromHtml(String source) {
+    static Spanned fromHtml(String source) {
         return Html.fromHtml(source);
     }
 
@@ -61,7 +61,7 @@ public final class tableUtil {
         row.addView(tv);
     }
 
-    public static void addBowlerInfoToTable(TableLayout lay_tab, String name, String info1, String info2, String info3, String info4, String info5) {
+    static void addBowlerInfoToTable(TableLayout lay_tab, String name, String info1, String info2, String info3, String info4, String info5) {
         TableRow row = new TableRow(lay_tab.getContext());
         TableLayout.LayoutParams lprow = new TableLayout.LayoutParams(-1, -2);
         lprow.setMargins(1, 1, 1, 1);
@@ -84,7 +84,7 @@ public final class tableUtil {
         lay_tab.addView(row, lprow);
     }
 
-    public static void addBatsmanInfoToTable(TableLayout lay_tab, String name, String info1, String info2, String info3, String info4, String info5) {
+    static void addBatsmanInfoToTable(TableLayout lay_tab, String name, String info1, String info2, String info3, String info4, String info5) {
         TableRow row = new TableRow(lay_tab.getContext());
         TableLayout.LayoutParams lprow = new TableLayout.LayoutParams(-1, -2);
         lprow.setMargins(1, 1, 1, 1);
@@ -107,7 +107,7 @@ public final class tableUtil {
         lay_tab.addView(row, lprow);
     }
 
-    public static void addFOWTitleToTable(TableLayout lay_tab, String name) {
+    static void addFOWTitleToTable(TableLayout lay_tab, String name) {
         TableRow row = new TableRow(lay_tab.getContext());
         TableLayout.LayoutParams lprow = new TableLayout.LayoutParams(-1, -2);
         lprow.setMargins(1, 1, 1, 1);
@@ -116,7 +116,7 @@ public final class tableUtil {
         lay_tab.addView(row, lprow);
     }
 
-    public static void addFOWToTable(TableLayout lay_tab, String follOfWicket, String name, String overs) {
+    static void addFOWToTable(TableLayout lay_tab, String follOfWicket, String name, String overs) {
         TableRow row = new TableRow(lay_tab.getContext());
         TableLayout.LayoutParams lprow = new TableLayout.LayoutParams(-1, -2);
         lprow.setMargins(1, 1, 1, 1);
@@ -127,7 +127,7 @@ public final class tableUtil {
         lay_tab.addView(row, lprow);
     }
 
-    public static void addExtrasToTable(TableLayout lay_tab, String extras, String byes, String legbyes, String wides, String noballs, String penalties) {
+    static void addExtrasToTable(TableLayout lay_tab, String extras, String byes, String legbyes, String wides, String noballs, String penalties) {
         TableRow row = new TableRow(lay_tab.getContext());
         TableLayout.LayoutParams lprow = new TableLayout.LayoutParams(-1, -2);
         lprow.setMargins(1, 1, 1, 1);
@@ -142,7 +142,7 @@ public final class tableUtil {
         lay_tab.addView(row, lprow);
     }
 
-    public static void addTotalToTable(TableLayout lay_tab, String teanname, String Score, String runrate) {
+    static void addTotalToTable(TableLayout lay_tab, String teanname, String Score, String runrate) {
         TableRow row = new TableRow(lay_tab.getContext());
         TableLayout.LayoutParams lprow = new TableLayout.LayoutParams(-1, -2);
         lprow.setMargins(1, 1, 1, 1);
@@ -153,7 +153,7 @@ public final class tableUtil {
         lay_tab.addView(row, lprow);
     }
 
-    public static void addRowToTable(TableLayout lay_tab, String text) {
+    static void addRowToTable(TableLayout lay_tab, String text) {
         TableRow row = new TableRow(lay_tab.getContext());
         TableLayout.LayoutParams lprow = new TableLayout.LayoutParams(-1, -2);
         if (text.equals("")) {
@@ -166,7 +166,7 @@ public final class tableUtil {
         lay_tab.addView(row, lprow);
     }
 
-    public static void addRowToTableWithColor(TableLayout lay_tab, String text) {
+    static void addRowToTableWithColor(TableLayout lay_tab, String text) {
         TableRow row = new TableRow(lay_tab.getContext());
         TableLayout.LayoutParams lprow = new TableLayout.LayoutParams(-1, -2);
         lprow.setMargins(1, 1, 1, 1);
@@ -179,7 +179,7 @@ public final class tableUtil {
         lay_tab.addView(row, lprow);
     }
 
-    public static void addTitleRowToTable(TableLayout lay_tab, String number, String score, String runrate) {
+    static void addTitleRowToTable(TableLayout lay_tab, String number, String score, String runrate) {
         TableRow row = new TableRow(lay_tab.getContext());
         TableLayout.LayoutParams lprow = new TableLayout.LayoutParams(-1, -2);
         lprow.gravity = 17;
@@ -269,7 +269,7 @@ public final class tableUtil {
                 addRowToTable(tl, commanjson.getRecentOvers(jSONObject));
                 addEmptyRowToTable(tl);
             } catch (Exception e) {
-                Log.e("com.live_cric_scores.tableUtil: FillMiniScoreToTableLayoutESPN :", e.getMessage(), e.getCause());
+                Log.e("com.live_cric_scores", e.getMessage(), e.getCause());
             }
         }
     }

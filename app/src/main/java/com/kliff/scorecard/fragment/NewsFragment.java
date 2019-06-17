@@ -53,7 +53,7 @@ public class NewsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initBrowser(view);
-        mWebview.loadUrl("https://sportstar.thehindu.com/cricket/icc-cricket-world-cup/?utm_source=google&utm_medium=cpc&utm_campaign=icc_wc_2019&gclid=Cj0KCQjwrpLoBRD_ARIsAJd0BIX3obx5RvSiEpm-3yewEVcKtKx-E2gGQyGT0TXiQQqVUiwDEL1r_S8aArNqEALw_wcB");
+        mWebview.loadUrl("https://primetimesnews.com/5016-7/");
 
     }
 
@@ -81,7 +81,6 @@ public class NewsFragment extends Fragment {
         mWebview.setWebViewClient(new WebClient());
         mWebview.clearCache(true);
         mWebview.setWebChromeClient(new WebChromeClient());
-
         mWebview.getSettings().setSupportZoom(true);
         mWebview.getSettings().setBuiltInZoomControls(true);
         mWebview.getSettings().setDisplayZoomControls(false);
@@ -99,7 +98,8 @@ public class NewsFragment extends Fragment {
         // Based on some condition you need to determine if you are going to load the url
         // in your web view itself or in a browser.
         // You can use `host` or `scheme` or any part of the `uri` to decide.
-        if (host.contains("https://sportstar.thehindu.com/cricket/icc-cricket-world-cup/?utm_source=google&utm_medium=cpc&utm_campaign=icc_wc_2019&gclid=Cj0KCQjwrpLoBRD_ARIsAJd0BIX3obx5RvSiEpm-3yewEVcKtKx-E2gGQyGT0TXiQQqVUiwDEL1r_S8aArNqEALw_wcB")) {
+        assert host != null;
+        if (host.contains("https://primetimesnews.com")) {
             // Returning false means that you are going to load this url in the webView itself
             return false;
         } else {
@@ -124,16 +124,13 @@ public class NewsFragment extends Fragment {
 
         }
 
-
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             progressDialog.show();
             final Uri uri = request.getUrl();
             return handleUri(uri);
-//            return false;
         }
-
 
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
@@ -154,8 +151,6 @@ public class NewsFragment extends Fragment {
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             progressDialog.dismiss();
-
         }
-
     }
 }

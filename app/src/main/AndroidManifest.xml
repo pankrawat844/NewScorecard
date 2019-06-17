@@ -33,11 +33,6 @@
 
         </activity>
         <activity
-            android:name=".activities.MainActivity1"
-            android:theme="@style/Theme.Design.NoActionBar">
-
-        </activity>
-        <activity
             android:name=".activities.CricInfoDetailScoreActivity"
             android:theme="@style/Theme.Design.NoActionBar" />
     </application>

@@ -26,6 +26,8 @@ import android.webkit.WebViewClient;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.kliff.scorecard.R;
@@ -50,8 +52,12 @@ public class WatchLiveFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
         init(view);
-        mWebview.loadUrl("http://hotstar11111.livemee.com");
+        mWebview.loadUrl("https://www.google.com/search?q=icc+world+cup+2019+points+table&oq=icc+&aqs=chrome.5.69i57j69i60l3j0l2.9103j0j7&sourceid=chrome&ie=UTF-8#sie=lg;/m/0cxvrj;5;/m/021vk;st;fp;1;;");
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -93,7 +99,7 @@ public class WatchLiveFragment extends Fragment {
         // in your web view itself or in a browser.
         // You can use `host` or `scheme` or any part of the `uri` to decide.
         if (host != null) {
-            if (host.contains("http://hotstar11111.livemee.com")) {
+            if (host.contains("https://www.google.com")) {
                 // Returning false means that you are going to load this url in the webView itself
                 return false;
             } else {

@@ -2,6 +2,7 @@ package com.kliff.scorecard.utils;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TableLayout;
@@ -56,7 +57,7 @@ public final class cricinfodetailscore {
                     int indexOfInn = indexOfTab + 1;
                     String newTabIndex = String.valueOf(indexOfInn + 1);
                     int id = CricInfoDetailScoreActivity.getInstance().getResources().getIdentifier("tab" + indexOfInn, "id", CricInfoDetailScoreActivity.getInstance().getPackageName());
-                    TableLayout tl = (TableLayout) CricInfoDetailScoreActivity.getInstance().findViewById(id);
+                    TableLayout tl = CricInfoDetailScoreActivity.getInstance().findViewById(id);
                     tl.removeAllViews();
                     tl.setVisibility(8);
                     String inn_number = String.valueOf(inni);

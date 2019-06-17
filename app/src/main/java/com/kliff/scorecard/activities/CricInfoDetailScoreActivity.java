@@ -26,11 +26,11 @@ import com.kliff.scorecard.utils.tableUtil;
 
 public class CricInfoDetailScoreActivity extends Activity {
     private static final String TAG = "com.live_cric_scores";
-    private static CricInfoDetailScoreActivity ourInstance = new CricInfoDetailScoreActivity();
-    private final OnClickListener OnBackPress = new C04492();
+    static CricInfoDetailScoreActivity ourInstance = new CricInfoDetailScoreActivity();
+   /* private final OnClickListener OnBackPress = new C04492();
     private final Runnable m_Runnable = new C04503();
     private final OnClickListener refreshAllMacthtListener = new C04514();
-    private final SwipeRefreshLayout.OnRefreshListener refreshSwipe = new C07111();
+    private final SwipeRefreshLayout.OnRefreshListener refreshSwipe = new C07111();*/
     public TabHost host;
     public Handler mHandler;
     ImageButton btnRefresh;
@@ -44,19 +44,12 @@ public class CricInfoDetailScoreActivity extends Activity {
         super.onCreate(savedInstanceState);
         ourInstance = this;
         Utils.onActivityCreateSetTheme(this);
-        setContentView(R.layout.detailedscore_activity);
-        Utils.changeBackground(this);
+        setContentView(R.layout.score_details);
+       /* Utils.changeBackground(this);
         Utils.setAdsOnTime(this);
         this.swipeContainer = findViewById(R.id.swipeContainer);
         this.swipeContainer.setOnRefreshListener(this.refreshSwipe);
 
-/*        this.swipeContainer.setColorSchemeResources(17170459, 17170452, 17170456, 17170454);
-        if (nwUtil.addOn) {
-            ((AdView) findViewById(R.id.myAdView)).loadAd(new Builder().build());
-        } else {
-            ((RelativeLayout) findViewById(R.id.relViewDetScore)).removeView(findViewById(R.id.myAdView));
-        }
-        */
         ((TextView) findViewById(R.id.ds_tvTitle)).setTypeface(Utils.fontFace);
         ImageView back = findViewById(R.id.ds_ibBack);
         back.setOnClickListener(this.OnBackPress);
@@ -71,9 +64,9 @@ public class CricInfoDetailScoreActivity extends Activity {
             return;
         }
         Toast.makeText(getApplicationContext(), "You are not connected !", Toast.LENGTH_SHORT).show();
-        Utils.changeToTheme(this, 4, false);
+        Utils.changeToTheme(this, 4, false);*/
     }
-
+/*
     public void fetchTimelineAsync(int page) {
         this.btnRefresh.performClick();
         this.swipeContainer.setRefreshing(false);
@@ -99,7 +92,7 @@ public class CricInfoDetailScoreActivity extends Activity {
     }
 
     public void onBackPressed() {
-//        super.onBackPressed();
+        //super.onBackPressed();
         finish();
         startActivity(new Intent(CricInfoDetailScoreActivity.this, BottomNavigation.class));
         overridePendingTransition(R.anim.slide_enter, R.anim.slide_exit);
@@ -115,15 +108,13 @@ public class CricInfoDetailScoreActivity extends Activity {
 
     private void refreshMatchESPN(String matchId) {
         if (matchId != null && !matchId.equals("-1")) {
-            Log.d(TAG, "onItemSelected :" + String.format(nwUtil.URL_DETAILSCORE_ESPN_FORMAT, new Object[]{matchId}));
+            Log.d(TAG, "onItemSelected :" + String.format(nwUtil.URL_DETAILSCORE_ESPN_FORMAT, matchId));
             Utils.setAnimation(this.btnRefresh);
-            if (new DisplayMatchesESPN().execute(new String[]{String.format(nwUtil.URL_DETAILSCORE_ESPN_FORMAT, new Object[]{matchId})}) != null) {
-            } else {
-            }
+            new DisplayMatchesESPN().execute(String.format(nwUtil.URL_DETAILSCORE_ESPN_FORMAT, matchId));
         }
     }
 
-    /* renamed from: com.live_cric_scores.CricInfoDetailScoreActivity$2 */
+    *//* renamed from: com.live_cric_scores.CricInfoDetailScoreActivity$2 *//*
     class C04492 implements OnClickListener {
         C04492() {
         }
@@ -133,7 +124,7 @@ public class CricInfoDetailScoreActivity extends Activity {
         }
     }
 
-    /* renamed from: com.live_cric_scores.CricInfoDetailScoreActivity$3 */
+    *//* renamed from: com.live_cric_scores.CricInfoDetailScoreActivity$3 *//*
     class C04503 implements Runnable {
         C04503() {
         }
@@ -153,7 +144,7 @@ public class CricInfoDetailScoreActivity extends Activity {
         }
     }
 
-    /* renamed from: com.live_cric_scores.CricInfoDetailScoreActivity$4 */
+    *//* renamed from: com.live_cric_scores.CricInfoDetailScoreActivity$4 *//*
     class C04514 implements OnClickListener {
         C04514() {
         }
@@ -171,13 +162,13 @@ public class CricInfoDetailScoreActivity extends Activity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             Log.d(CricInfoDetailScoreActivity.TAG, "DisplayMatchesESPN - result :" + result);
-            TableLayout ds_lay_tab_matches = (TableLayout) CricInfoDetailScoreActivity.this.findViewById(R.id.ds_lay_tab_matches);
+            TableLayout ds_lay_tab_matches = CricInfoDetailScoreActivity.this.findViewById(R.id.ds_lay_tab_matches);
             ds_lay_tab_matches.removeAllViews();
             if (result != null) {
                 try {
                     cricinfodetailscore.onPostExecute(result, ds_lay_tab_matches, CricInfoDetailScoreActivity.this.host);
                     for (int i = 0; i < CricInfoDetailScoreActivity.this.host.getTabWidget().getChildCount(); i++) {
-                        TextView tv = (TextView) CricInfoDetailScoreActivity.this.host.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+                        TextView tv = CricInfoDetailScoreActivity.this.host.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
                         tv.setTextColor(Utils.MATCH_TITLE_TEXT_COLOR);
                         tv.setTextSize(16.0f);
                         tv.setTypeface(Typeface.createFromAsset(CricInfoDetailScoreActivity.this.getAssets(), Utils.fonrString));
@@ -197,7 +188,7 @@ public class CricInfoDetailScoreActivity extends Activity {
         }
     }
 
-    /* renamed from: com.live_cric_scores.CricInfoDetailScoreActivity$1 */
+    *//* renamed from: com.live_cric_scores.CricInfoDetailScoreActivity$1 *//*
     class C07111 implements SwipeRefreshLayout.OnRefreshListener {
         C07111() {
         }
@@ -205,6 +196,6 @@ public class CricInfoDetailScoreActivity extends Activity {
         public void onRefresh() {
             CricInfoDetailScoreActivity.this.fetchTimelineAsync(0);
         }
-    }
+    }*/
 
 }
