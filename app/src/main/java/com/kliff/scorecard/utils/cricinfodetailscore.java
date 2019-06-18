@@ -45,7 +45,7 @@ public final class cricinfodetailscore {
                 Utils.tabSpecList.remove(tableIndexToBeDeleted);
                 host.getTabWidget().removeView(host.getTabWidget().getChildTabViewAt(tableIndexToBeDeleted));
             }
-            TabSpec fakeSpec = host.newTabSpec("about").setIndicator("faketab").setContent(CricInfoDetailScoreFragment.getInstance().getResources().getIdentifier("faketab", "id", "com.kliff.scorecard.fragment"));
+            TabSpec fakeSpec = host.newTabSpec("about").setIndicator("faketab").setContent(CricInfoDetailScoreFragment.getInstance().getResources().getIdentifier("faketab", "id", CricInfoDetailScoreFragment.getInstance().getActivity().getPackageName()));
             host.addTab(fakeSpec);
             Utils.tabSpecList.add(fakeSpec);
             host.getTabWidget().getChildTabViewAt(0).setVisibility(8);
@@ -55,7 +55,7 @@ public final class cricinfodetailscore {
                 if (inning != null && inning.getInt("batted") == 1) {
                     int indexOfInn = indexOfTab + 1;
                     String newTabIndex = String.valueOf(indexOfInn + 1);
-                    int id = CricInfoDetailScoreFragment.getInstance().getResources().getIdentifier("tab" + indexOfInn, "id","com.kliff.scorecard.fragment");
+                    int id = CricInfoDetailScoreFragment.getInstance().getResources().getIdentifier("tab" + indexOfInn, "id",CricInfoDetailScoreFragment.getInstance().getActivity().getPackageName());
                     TableLayout tl = CricInfoDetailScoreFragment.getInstance().getView().findViewById(id);
                     tl.removeAllViews();
                     tl.setVisibility(8);

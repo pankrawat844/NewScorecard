@@ -69,7 +69,7 @@ public class CricInfoDetailScoreFragment extends Fragment {
         this.host = view.findViewById(R.id.tab_host);
         this.host.setup();
         if (nwUtil.isConnected(getActivity())) {
-            refreshMatchESPN(getActivity().getIntent().getStringExtra("matchid"));
+            refreshMatchESPN(getArguments().getString("matchid"));
             return;
         }
         Toast.makeText(getActivity(), "You are not connected !", Toast.LENGTH_SHORT).show();

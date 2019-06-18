@@ -40,7 +40,7 @@ public final class nwUtil {
     public static boolean addOn = true;
     public static boolean auto_refresh = true;
     public static long currentTimeSince1970 = 0;
-    public static int refresh_rate;
+    public static int refresh_rate = 3000;
     public static String selectedCBZMatch = "Select Match 1...";
     public static int selectedCBZMatchID = -1;
     public static String selectedCBZMatchdataPath = "";
