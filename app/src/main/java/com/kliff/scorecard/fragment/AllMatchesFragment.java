@@ -216,10 +216,10 @@ public class AllMatchesFragment extends Fragment {
 
         public void run() {
             try {
-                AllMatchesFragment.this.stopRepeatingTask();
+                stopRepeatingTask();
                 executeURL();
             } finally {
-                AllMatchesFragment.this.mHandler.postDelayed(AllMatchesFragment.this.m_Runnable, 5000);
+                mHandler.postDelayed(m_Runnable, 5000);
             }
         }
     }
@@ -231,10 +231,7 @@ public class AllMatchesFragment extends Fragment {
 
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            AllMatchesFragment.this.fillMatchListESPN(result);
-            boolean isMatchListAndMiniScoreCBZRan = false;
-            if (isMatchListAndMiniScoreCBZRan) {
-            }
+            fillMatchListESPN(result);
         }
     }
 }

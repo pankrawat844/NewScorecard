@@ -78,7 +78,6 @@ public class TodayMatchesFragmnet extends Fragment {
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), FullScoreDetailsActivity.class);
                 intent.putExtra("matchid", list.get(position).getMatchid());
-//                nwUtil.selectedESPNMatchID = list.get(position).getMatchid();
                 getActivity().finish();
                 startActivity(intent);
             }
@@ -203,9 +202,6 @@ public class TodayMatchesFragmnet extends Fragment {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             fillMatchListESPN(result);
-            boolean isMatcheListAndMiniScoreCBZRan = false;
-            if (isMatcheListAndMiniScoreCBZRan) {
-            }
         }
     }
 }

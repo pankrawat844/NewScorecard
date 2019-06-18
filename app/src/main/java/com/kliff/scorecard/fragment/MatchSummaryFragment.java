@@ -68,11 +68,12 @@ public class MatchSummaryFragment extends Fragment {
     private String matchid;
     private String url;
 
-    private final Runnable m_Runnable= new Runnable() {
+    private final Runnable m_Runnable = new Runnable() {
         @Override
         public void run() {
+            Log.e(TAG, "isCalling: ");
             scoreData(url);
-            Log.e(TAG, "run: " + url );
+            Log.e(TAG, "run: " + url);
         }
     };
 
@@ -92,7 +93,7 @@ public class MatchSummaryFragment extends Fragment {
         matchid = bundle.getString("matchid");
         assert getActivity() != null;
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        url = "http://api.espncricinfo.com/4/match/"+ matchid +"/scores?&key=c3e20ac4-4ade-4624-8d96-e19beb44ec68";
+        url = "http://api.espncricinfo.com/4/match/" + matchid + "/scores?&key=c3e20ac4-4ade-4624-8d96-e19beb44ec68";
         scoreData(url);
     }
 
@@ -122,9 +123,19 @@ public class MatchSummaryFragment extends Fragment {
                             matchNumber.setText(description);
                             JSONObject player = summary.getJSONObject("player");
                             JSONObject live = summary.getJSONObject("live");
-                            JSONObject inning = live.getJSONObject("innings");
-                            String isLive = inning.getString("innings_number");
+                            JSONObject liveInning = live.getJSONObject("innings");
+                            String isLive = liveInning.getString("innings_number");
                             JSONArray team_id = summary.getJSONArray("team");
+                            JSONArray innings = summary.getJSONArray("innings");
+
+                            JSONObject inningOne = innings.getJSONObject(0);
+                            JSONObject inningTwo = innings.getJSONObject(1);
+
+                            String inningOneNumber = innings.getJSONObject(0).getString("innings_number");
+                            Log.e(TAG, "inning_number: " + inningOneNumber);
+                            String inningTwoNumber = innings.getJSONObject(1).getString("innings_number");
+                            Log.e(TAG, "onResponse: " + inningTwoNumber);
+
 
                             String team_1_name = team_id.getJSONObject(0).getString("team_name");
                             String team_2_name = team_id.getJSONObject(1).getString("team_name");
@@ -165,15 +176,24 @@ public class MatchSummaryFragment extends Fragment {
                                     bowler1Wickets.setText(commentaryData.getString("bowler_wickets"));
                                     bowler2Wickets.setText(commentaryData.getString("other_bowler_wickets"));
 
-                                    team1Score.setText("");
-                                    team2Score.setText(commentaryData.getString("runs") +"/"+commentaryData.getString("wickets")
-                                            +" ("+commentaryData.getString("overs_actual")+"/" + 50 +")");
+                                    if (inningTwoNumber.equals("2")) {
+
+                                        team1Score.setText(commentaryData.getString("runs") + "/" + commentaryData.getString("wickets")
+                                                + " (" + commentaryData.getString("overs_actual") + "/" + 50 + ")");
+                                        Log.e(TAG, "runs: " + commentaryData.getString("runs"));
+                                        Log.e(TAG, "wickets: " + commentaryData.getString("wickets"));
+                                        Log.e(TAG, "overs_actual: " + commentaryData.getString("overs_actual"));
+                                    }
+
+                                    if (inningOneNumber.equals("1")) {
+                                        team2Score.setText(inningOne.getString("runs") + "/" + inningOne.getString("wickets"));
+                                    }
                                 }
 
                                 if (player.has(strike_player_id)) {
                                     JSONObject players_name = player.getJSONObject(strike_player_id);
                                     player1.setText(players_name.getString("known_as"));
-                                    Log.e(TAG, "player name: "+ players_name.getString("known_as"));
+                                    Log.e(TAG, "player name: " + players_name.getString("known_as"));
                                 }
 
                                 if (player.has(non_strike_player_id)) {
