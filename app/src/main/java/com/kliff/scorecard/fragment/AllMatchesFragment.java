@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kliff.scorecard.R;
-import com.kliff.scorecard.activities.CricInfoDetailScoreActivity;
+import com.kliff.scorecard.activities.FullScoreDetailsActivity;
 import com.kliff.scorecard.adapter.MatchListAdapter;
 import com.kliff.scorecard.adapter.RecyclerItemClickListener;
 import com.kliff.scorecard.model.MatchList;
@@ -38,7 +38,6 @@ public class AllMatchesFragment extends Fragment {
     private final Runnable m_Runnable = new AllMatchesFragment.C04552();
 
     private MatchListAdapter adapter;
-    private ImageButton btnRefresh;
     private RecyclerView recyclerView;
     private Handler mHandler;
 
@@ -60,7 +59,6 @@ public class AllMatchesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setRetainInstance(true);
         recyclerView = view.findViewById(R.id.recylerview);
-        btnRefresh = view.findViewById(R.id.ds_btnRefresh);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         fillMatchListESPN(nwUtil.ESPNMatchListJASONData);
@@ -71,7 +69,7 @@ public class AllMatchesFragment extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getActivity(), CricInfoDetailScoreActivity.class);
+                Intent intent = new Intent(getActivity(), FullScoreDetailsActivity.class);
                 intent.putExtra("matchid", list.get(position).getMatchid());
                 startActivity(intent);
             }
@@ -236,7 +234,6 @@ public class AllMatchesFragment extends Fragment {
             AllMatchesFragment.this.fillMatchListESPN(result);
             boolean isMatchListAndMiniScoreCBZRan = false;
             if (isMatchListAndMiniScoreCBZRan) {
-                Utils.clearAnimation(btnRefresh);
             }
         }
     }

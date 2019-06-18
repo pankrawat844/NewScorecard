@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kliff.scorecard.R;
-import com.kliff.scorecard.activities.CricInfoDetailScoreActivity;
+import com.kliff.scorecard.activities.FullScoreDetailsActivity;
 import com.kliff.scorecard.adapter.MatchListAdapter;
 import com.kliff.scorecard.adapter.RecyclerItemClickListener;
 import com.kliff.scorecard.model.MatchList;
@@ -34,11 +34,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class LiveScoreFragmnet extends Fragment {
+public class TodayMatchesFragmnet extends Fragment {
 
     private static final String TAG = "com.live_cric_scores";
 
-    private ImageButton btnRefresh;
     private RecyclerView recyclerView;
     private MatchListAdapter adapter;
     private Handler mHandler;
@@ -46,10 +45,10 @@ public class LiveScoreFragmnet extends Fragment {
         @Override
         public void run() {
             try {
-                LiveScoreFragmnet.this.stopRepeatingTask();
-                LiveScoreFragmnet.this.executeURL();
+                TodayMatchesFragmnet.this.stopRepeatingTask();
+                TodayMatchesFragmnet.this.executeURL();
             } finally {
-                LiveScoreFragmnet.this.mHandler.postDelayed(LiveScoreFragmnet.this.m_Runnable, 5000);
+                TodayMatchesFragmnet.this.mHandler.postDelayed(TodayMatchesFragmnet.this.m_Runnable, 5000);
             }
         }
     };
@@ -59,7 +58,7 @@ public class LiveScoreFragmnet extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_live_score_fragmnet, container, false);
+        return inflater.inflate(R.layout.fragment_today_matches, container, false);
     }
 
     /* renamed from: com.live_cric_scores.MainActivity$3 */
@@ -68,7 +67,6 @@ public class LiveScoreFragmnet extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setRetainInstance(true);
         recyclerView = view.findViewById(R.id.recylerview);
-        btnRefresh = view.findViewById(R.id.ds_btnRefresh);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         fillMatchListESPN(nwUtil.ESPNMatchListJASONData);
         executeURL();
@@ -78,7 +76,7 @@ public class LiveScoreFragmnet extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getActivity(), CricInfoDetailScoreActivity.class);
+                Intent intent = new Intent(getActivity(), FullScoreDetailsActivity.class);
                 intent.putExtra("matchid", list.get(position).getMatchid());
 //                nwUtil.selectedESPNMatchID = list.get(position).getMatchid();
                 getActivity().finish();
@@ -207,7 +205,6 @@ public class LiveScoreFragmnet extends Fragment {
             fillMatchListESPN(result);
             boolean isMatcheListAndMiniScoreCBZRan = false;
             if (isMatcheListAndMiniScoreCBZRan) {
-                Utils.clearAnimation(btnRefresh);
             }
         }
     }

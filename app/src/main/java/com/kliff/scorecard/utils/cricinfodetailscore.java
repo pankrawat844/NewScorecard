@@ -2,13 +2,12 @@ package com.kliff.scorecard.utils;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TableLayout;
 
 import com.kliff.scorecard.R;
-import com.kliff.scorecard.activities.CricInfoDetailScoreActivity;
+import com.kliff.scorecard.fragment.CricInfoDetailScoreFragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -46,7 +45,7 @@ public final class cricinfodetailscore {
                 Utils.tabSpecList.remove(tableIndexToBeDeleted);
                 host.getTabWidget().removeView(host.getTabWidget().getChildTabViewAt(tableIndexToBeDeleted));
             }
-            TabSpec fakeSpec = host.newTabSpec("about").setIndicator("faketab").setContent(CricInfoDetailScoreActivity.getInstance().getResources().getIdentifier("faketab", "id", CricInfoDetailScoreActivity.getInstance().getPackageName()));
+            TabSpec fakeSpec = host.newTabSpec("about").setIndicator("faketab").setContent(CricInfoDetailScoreFragment.getInstance().getResources().getIdentifier("faketab", "id", "com.kliff.scorecard.fragment"));
             host.addTab(fakeSpec);
             Utils.tabSpecList.add(fakeSpec);
             host.getTabWidget().getChildTabViewAt(0).setVisibility(8);
@@ -56,8 +55,8 @@ public final class cricinfodetailscore {
                 if (inning != null && inning.getInt("batted") == 1) {
                     int indexOfInn = indexOfTab + 1;
                     String newTabIndex = String.valueOf(indexOfInn + 1);
-                    int id = CricInfoDetailScoreActivity.getInstance().getResources().getIdentifier("tab" + indexOfInn, "id", CricInfoDetailScoreActivity.getInstance().getPackageName());
-                    TableLayout tl = CricInfoDetailScoreActivity.getInstance().findViewById(id);
+                    int id = CricInfoDetailScoreFragment.getInstance().getResources().getIdentifier("tab" + indexOfInn, "id","com.kliff.scorecard.fragment");
+                    TableLayout tl = CricInfoDetailScoreFragment.getInstance().getView().findViewById(id);
                     tl.removeAllViews();
                     tl.setVisibility(8);
                     String inn_number = String.valueOf(inni);

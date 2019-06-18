@@ -17,6 +17,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".activities.FullScoreDetailsActivity"
+            android:theme="@style/Theme.Design.NoActionBar" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -30,10 +34,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity
-            android:name=".activities.CricInfoDetailScoreActivity"
-            android:theme="@style/Theme.Design.NoActionBar" />
     </application>
+
 </manifest>

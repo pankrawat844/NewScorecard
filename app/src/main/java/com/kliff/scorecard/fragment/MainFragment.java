@@ -29,7 +29,7 @@ public class MainFragment extends Fragment {
         ViewPager viewPager = view.findViewById(R.id.viewPager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         viewPagerAdapter.addFragment(new AllMatchesFragment(), "All Matches");
-        viewPagerAdapter.addFragment(new LiveScoreFragmnet(), "Today Matches");
+        viewPagerAdapter.addFragment(new TodayMatchesFragmnet(), "Today Matches");
         //viewPagerAdapter.addFragment(new WatchLiveFragment(), "Watch Live");
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(viewPagerAdapter);
