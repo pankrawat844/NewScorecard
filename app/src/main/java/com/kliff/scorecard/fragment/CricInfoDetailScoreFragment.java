@@ -1,7 +1,9 @@
 package com.kliff.scorecard.fragment;
 
+import android.annotation.TargetApi;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -25,6 +27,8 @@ import com.kliff.scorecard.utils.Utils;
 import com.kliff.scorecard.utils.cricinfodetailscore;
 import com.kliff.scorecard.utils.nwUtil;
 import com.kliff.scorecard.utils.tableUtil;
+
+import java.util.Objects;
 
 public class CricInfoDetailScoreFragment extends Fragment {
     private static final String TAG = "com.live_cric_scores";
@@ -168,10 +172,11 @@ public class CricInfoDetailScoreFragment extends Fragment {
             return nwUtil.doInBackground(args);
         }
 
+        @TargetApi(Build.VERSION_CODES.KITKAT)
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             Log.d(CricInfoDetailScoreFragment.TAG, "DisplayMatchesESPN - result :" + result);
-            TableLayout ds_lay_tab_matches = CricInfoDetailScoreFragment.this.getView().findViewById(R.id.ds_lay_tab_matches);
+            TableLayout ds_lay_tab_matches = Objects.requireNonNull(CricInfoDetailScoreFragment.this.getView()).findViewById(R.id.ds_lay_tab_matches);
             ds_lay_tab_matches.removeAllViews();
             if (result != null) {
                 try {

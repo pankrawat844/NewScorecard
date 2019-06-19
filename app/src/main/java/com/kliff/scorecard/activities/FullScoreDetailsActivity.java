@@ -22,10 +22,13 @@ public class FullScoreDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_full_score_details);
         MatchSummaryFragment matchSummaryFragment = new MatchSummaryFragment();
         CommentrayFragment commentrayFragment = new CommentrayFragment();
-        CricInfoDetailScoreFragment info= new CricInfoDetailScoreFragment();
+        CricInfoDetailScoreFragment info = new CricInfoDetailScoreFragment();
         Intent intent = getIntent();
         Bundle bundle = new Bundle();
         bundle.putString("matchid", intent.getStringExtra("matchid"));
+        bundle.putString("match_status", intent.getStringExtra("match_status"));
+        bundle.putString("status", intent.getStringExtra("status"));
+        bundle.putString("full_description", intent.getStringExtra("full_description"));
         matchSummaryFragment.setArguments(bundle);
         commentrayFragment.setArguments(bundle);
         info.setArguments(bundle);

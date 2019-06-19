@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +21,6 @@ import com.kliff.scorecard.activities.FullScoreDetailsActivity;
 import com.kliff.scorecard.adapter.MatchListAdapter;
 import com.kliff.scorecard.adapter.RecyclerItemClickListener;
 import com.kliff.scorecard.model.MatchList;
-import com.kliff.scorecard.utils.Utils;
 import com.kliff.scorecard.utils.nwUtil;
 
 import org.json.JSONArray;
@@ -48,12 +46,13 @@ public class TodayMatchesFragmnet extends Fragment {
                 TodayMatchesFragmnet.this.stopRepeatingTask();
                 TodayMatchesFragmnet.this.executeURL();
             } finally {
-                TodayMatchesFragmnet.this.mHandler.postDelayed(TodayMatchesFragmnet.this.m_Runnable, 5000);
+                TodayMatchesFragmnet.this.mHandler.postDelayed(TodayMatchesFragmnet.this.m_Runnable, 3000);
             }
         }
     };
 
     private List<MatchList> list = new ArrayList<>();
+    private String match_status;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -78,7 +77,7 @@ public class TodayMatchesFragmnet extends Fragment {
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), FullScoreDetailsActivity.class);
                 intent.putExtra("matchid", list.get(position).getMatchid());
-                getActivity().finish();
+                intent.putExtra("match_status", list.get(position).getMatch_status());
                 startActivity(intent);
             }
         }));
@@ -154,6 +153,7 @@ public class TodayMatchesFragmnet extends Fragment {
                         matchList.setTeam1_img("http://api.espncricinfo.com" + series.getJSONObject("team").getJSONObject(data.getJSONObject(j).getJSONObject("match").getString("team1_id")).getString("f"));
                         matchList.setTeam2_img("http://api.espncricinfo.com" + series.getJSONObject("team").getJSONObject(data.getJSONObject(j).getJSONObject("match").getString("team2_id")).getString("f"));
                         matchList.setMatchid(data.getJSONObject(j).getString("object_id"));
+                        matchList.setMatch_status(data.getJSONObject(j).getJSONObject("match").getString("match_status"));
                         matchList.setVenue(data.getJSONObject(j).getString("description"));
                         matchList.setResult(data.getJSONObject(j).getJSONObject("live").getString("status"));
 
