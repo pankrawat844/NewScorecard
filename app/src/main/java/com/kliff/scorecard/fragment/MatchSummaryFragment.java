@@ -187,6 +187,10 @@ public class MatchSummaryFragment extends Fragment {
                             JSONArray team = summary.getJSONArray("team");
                             String team1_id_team = team.getJSONObject(0).getString("team_id");
 
+                            double v =  Double.parseDouble( inning_one_data.getString("over_limit"));
+                            int d = (int) v;
+                            String total_over = String.valueOf(d);
+
                             if (team1_id_inning.equals(team1_id_team)) {
                                 team1.setText(team.getJSONObject(0).getString("team_name"));
                                 if (inning_one_data.getString("scheduled_overs").equals("0")) {
@@ -194,7 +198,7 @@ public class MatchSummaryFragment extends Fragment {
                                             + " (" + inning_one_data.getString("overs") + ")");
                                 } else {
                                     team1Score.setText(inning_one_data.getString("runs") + "/" + inning_one_data.getString("wickets")
-                                            + " (" + inning_one_data.getString("overs") + "/" + inning_one_data.getString("scheduled_overs") + ")");
+                                            + " (" + inning_one_data.getString("overs") + "/" + total_over + ")");
                                 }
                                 team2.setText(team.getJSONObject(1).getString("team_name"));
                                 if (inning_two_data.getString("scheduled_overs").equals("0")) {
@@ -203,7 +207,7 @@ public class MatchSummaryFragment extends Fragment {
                                 } else {
 
                                     team2Score.setText(inning_two_data.getString("runs") + "/" + inning_two_data.getString("wickets")
-                                            + " (" + inning_two_data.getString("overs") + "/" + inning_two_data.getString("scheduled_overs") + ")");
+                                            + " (" + inning_two_data.getString("overs") + "/" + total_over + ")");
                                 }
                             } else {
                                 team1.setText(team.getJSONObject(1).getString("team_name"));
@@ -214,7 +218,7 @@ public class MatchSummaryFragment extends Fragment {
                                 } else {
 
                                     team1Score.setText(inning_one_data.getString("runs") + "/" + inning_one_data.getString("wickets")
-                                            + " (" + inning_one_data.getString("overs") + "/" + inning_one_data.getString("scheduled_overs") + ")");
+                                            + " (" + inning_one_data.getString("overs") + "/" + total_over + ")");
                                 }
                                 team2.setText(team.getJSONObject(0).getString("team_name"));
                                 if (inning_two_data.getString("scheduled_overs").equals("0")) {
@@ -222,7 +226,7 @@ public class MatchSummaryFragment extends Fragment {
                                             + " (" + inning_two_data.getString("overs") + ")");
                                 } else {
                                     team2Score.setText(inning_two_data.getString("runs") + "/" + inning_two_data.getString("wickets")
-                                            + " (" + inning_two_data.getString("overs") + "/" + inning_two_data.getString("scheduled_overs") + ")");
+                                            + " (" + inning_two_data.getString("overs") + "/" + total_over + ")");
                                 }
                             }
 
