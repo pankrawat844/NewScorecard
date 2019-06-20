@@ -1,525 +1,558 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="4dp"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="8dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="vertical"
-            android:padding="4dp">
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            >
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:background="@color/colorPrimary">
 
-                <TextView
-                    android:id="@+id/result"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/result"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#c62828"
+                        tools:text="Live" />
+
+                    <TextView
+                        android:id="@+id/match_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/result"
+                        tools:text="Match number" />
+
+                    <TextView
+                        android:id="@+id/team_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/match_number"
+                        android:textSize="20sp"
+                        tools:text="Team 1" />
+
+                    <TextView
+                        android:id="@+id/team_1_score"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/team_1"
+                        android:layout_marginTop="3dp"
+                        android:gravity="end"
+                        android:textSize="20sp"
+                        tools:text="Team Score" />
+
+                    <TextView
+                        android:id="@+id/team_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/team_1"
+                        android:textSize="20sp"
+                        tools:text="Team 2" />
+
+                    <TextView
+                        android:id="@+id/team_2_score"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/team_2"
+                        android:gravity="end"
+                        android:textSize="20sp"
+                        tools:text="Team Score" />
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/matchDetailCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/colorPrimary">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Live"
-                    android:textColor="#c62828"/>
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="1">
 
-                <TextView
-                    android:id="@+id/match_number"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.11"
+                        android:text="BATSMEN"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:text="R"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:text="B"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:text="4s"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:text="6s"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.17"
+                        android:gravity="center"
+                        android:text="SR"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="#707070" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/result"
-                    tools:text="Match number" />
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="1">
 
-                <TextView
-                    android:id="@+id/team_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/match_number"
-                    android:textSize="20sp"
-                    tools:text="Team 1" />
+                    <TextView
+                        android:id="@+id/player_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.11"
+                        android:gravity="center_vertical"
+                        android:textColor="#005cb2"
+                        android:textStyle="bold"
+                        tools:text="Shai Hope" />
 
-                <TextView
-                    android:id="@+id/team_1_score"
+                    <TextView
+                        android:id="@+id/player_1_runs"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="64" />
+
+                    <TextView
+                        android:id="@+id/player_1_balls"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="88" />
+
+                    <TextView
+                        android:id="@+id/player_1_4s"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="4" />
+
+                    <TextView
+                        android:id="@+id/player_1_6s"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="1" />
+
+                    <TextView
+                        android:id="@+id/player_1_sr"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.17"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="76.40" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="#bdbdbd" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@id/team_1"
-                    android:layout_marginTop="3dp"
-                    android:gravity="end"
-                    android:textSize="20sp"
-                    tools:text="Team Score" />
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="1">
 
-                <TextView
-                    android:id="@+id/team_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/team_1"
-                    android:textSize="20sp"
-                    tools:text="Team 2" />
+                    <TextView
+                        android:id="@+id/player_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.11"
+                        android:gravity="center_vertical"
+                        android:textColor="#005cb2"
+                        android:textStyle="bold"
+                        tools:text="Shimron Hetmyer" />
 
-                <TextView
-                    android:id="@+id/team_2_score"
+                    <TextView
+                        android:id="@+id/player_2_runs"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="14" />
+
+                    <TextView
+                        android:id="@+id/player_2_balls"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="9" />
+
+                    <TextView
+                        android:id="@+id/player_2_4s"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="2" />
+
+                    <TextView
+                        android:id="@+id/player_2_6s"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="0" />
+
+                    <TextView
+                        android:id="@+id/player_2_sr"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.17"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="155.55" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="#bdbdbd" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@id/team_2"
-                    android:gravity="end"
-                    android:textSize="20sp"
-                    tools:text="Team Score" />
-            </RelativeLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="1">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="4dp"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="8dp">
-        <LinearLayout
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.11"
+                        android:text="BOWLERS"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:text="O"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:text="M"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:text="R"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:text="W"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.17"
+                        android:gravity="center"
+                        android:text="ECON"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="#707070" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/bowler_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.11"
+                        android:gravity="center_vertical"
+                        android:textColor="#005cb2"
+                        android:textStyle="bold"
+                        tools:text="Mosaddek Hossain" />
+
+                    <TextView
+                        android:id="@+id/bowler_1_overs"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="5.3" />
+
+                    <TextView
+                        android:id="@+id/bowler_1_maiden"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="0" />
+
+                    <TextView
+                        android:id="@+id/bowler_1_runs"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="34" />
+
+                    <TextView
+                        android:id="@+id/bowler_1_wickets"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="0" />
+
+                    <TextView
+                        android:id="@+id/bowler_1_econ"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.17"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="6.18" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="#bdbdbd" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/bowler_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.11"
+                        android:gravity="center_vertical"
+                        android:textColor="#005cb2"
+                        android:textStyle="bold"
+                        tools:text="Mehidy Hasan" />
+
+                    <TextView
+                        android:id="@+id/bowler_2_overs"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="7" />
+
+                    <TextView
+                        android:id="@+id/bowler_2_maiden"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="0" />
+
+                    <TextView
+                        android:id="@+id/bowler_2_runs"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="46" />
+
+                    <TextView
+                        android:id="@+id/bowler_2_wickets"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.18"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="0" />
+
+                    <TextView
+                        android:id="@+id/bowler_2_econ"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.17"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        tools:text="6.57" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="#bdbdbd" />
+
+                <TextView
+                    android:id="@+id/recent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textStyle="bold"
+                    tools:text="Hello This IS Demo" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/loading"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp"
-                android:weightSum="1">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.11"
-                    android:text="BATSMEN"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:text="R"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:text="B"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:text="4s"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:text="6s"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.17"
-                    android:gravity="center"
-                    android:text="SR"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:background="#707070" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp"
-                android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/player_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.11"
-                    android:gravity="center_vertical"
-                    android:textColor="#005cb2"
-                    android:textStyle="bold"
-                    tools:text="Shai Hope" />
-
-                <TextView
-                    android:id="@+id/player_1_runs"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="64" />
-
-                <TextView
-                    android:id="@+id/player_1_balls"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="88" />
-
-                <TextView
-                    android:id="@+id/player_1_4s"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="4" />
-
-                <TextView
-                    android:id="@+id/player_1_6s"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="1" />
-
-                <TextView
-                    android:id="@+id/player_1_sr"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.17"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="76.40" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:background="#bdbdbd" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp"
-                android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/player_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.11"
-                    android:gravity="center_vertical"
-                    android:textColor="#005cb2"
-                    android:textStyle="bold"
-                    tools:text="Shimron Hetmyer" />
-
-                <TextView
-                    android:id="@+id/player_2_runs"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="14" />
-
-                <TextView
-                    android:id="@+id/player_2_balls"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="9" />
-
-                <TextView
-                    android:id="@+id/player_2_4s"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="2" />
-
-                <TextView
-                    android:id="@+id/player_2_6s"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="0" />
-
-                <TextView
-                    android:id="@+id/player_2_sr"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.17"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="155.55" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:background="#bdbdbd" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                android:padding="4dp"
-                android:weightSum="1">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.11"
-                    android:text="BOWLERS"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:text="O"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:text="M"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:text="R"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:text="W"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.17"
-                    android:gravity="center"
-                    android:text="ECON"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:background="#707070" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp"
-                android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/bowler_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.11"
-                    android:gravity="center_vertical"
-                    android:textColor="#005cb2"
-                    android:textStyle="bold"
-                    tools:text="Mosaddek Hossain" />
-
-                <TextView
-                    android:id="@+id/bowler_1_overs"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="5.3" />
-
-                <TextView
-                    android:id="@+id/bowler_1_maiden"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="0" />
-
-                <TextView
-                    android:id="@+id/bowler_1_runs"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="34" />
-
-                <TextView
-                    android:id="@+id/bowler_1_wickets"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="0" />
-
-                <TextView
-                    android:id="@+id/bowler_1_econ"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.17"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="6.18" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:background="#bdbdbd" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp"
-                android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/bowler_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.11"
-                    android:gravity="center_vertical"
-                    android:textColor="#005cb2"
-                    android:textStyle="bold"
-                    tools:text="Mehidy Hasan" />
-
-                <TextView
-                    android:id="@+id/bowler_2_overs"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="7" />
-
-                <TextView
-                    android:id="@+id/bowler_2_maiden"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="0" />
-
-                <TextView
-                    android:id="@+id/bowler_2_runs"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="46" />
-
-                <TextView
-                    android:id="@+id/bowler_2_wickets"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.18"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="0" />
-
-                <TextView
-                    android:id="@+id/bowler_2_econ"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0.17"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    tools:text="6.57" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:background="#bdbdbd" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+            tools:listitem="@layout/score_summery"
+            />
+    </LinearLayout>
+</ScrollView>

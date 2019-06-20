@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +21,6 @@ import com.kliff.scorecard.activities.FullScoreDetailsActivity;
 import com.kliff.scorecard.adapter.MatchListAdapter;
 import com.kliff.scorecard.adapter.RecyclerItemClickListener;
 import com.kliff.scorecard.model.MatchList;
-import com.kliff.scorecard.utils.Utils;
 import com.kliff.scorecard.utils.nwUtil;
 
 import org.json.JSONArray;
@@ -71,6 +69,9 @@ public class AllMatchesFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), FullScoreDetailsActivity.class);
                 intent.putExtra("matchid", list.get(position).getMatchid());
+                intent.putExtra("match_status", list.get(position).getMatch_status());
+                intent.putExtra("status", list.get(position).getResult());
+                intent.putExtra("full_description", list.get(position).getFull_description());
                 startActivity(intent);
             }
         }));
@@ -170,6 +171,8 @@ public class AllMatchesFragment extends Fragment {
                     matchList.setTeam1_img("http://api.espncricinfo.com" + series.getJSONObject("team").getJSONObject(data.getJSONObject(j).getJSONObject("match").getString("team1_id")).getString("f"));
                     matchList.setTeam2_img("http://api.espncricinfo.com" + series.getJSONObject("team").getJSONObject(data.getJSONObject(j).getJSONObject("match").getString("team2_id")).getString("f"));
                     matchList.setMatchid(data.getJSONObject(j).getString("object_id"));
+                    matchList.setMatch_status(data.getJSONObject(j).getJSONObject("match").getString("match_status"));
+                    matchList.setFull_description(data.getJSONObject(j).getString("full_description"));
                     matchList.setVenue(data.getJSONObject(j).getString("description"));
                     matchList.setResult(data.getJSONObject(j).getJSONObject("live").getString("status"));
                     if (data.getJSONObject(j).getJSONArray("innings").length() > 0) {
@@ -219,7 +222,7 @@ public class AllMatchesFragment extends Fragment {
                 stopRepeatingTask();
                 executeURL();
             } finally {
-                mHandler.postDelayed(m_Runnable, 5000);
+                mHandler.postDelayed(m_Runnable, 3000);
             }
         }
     }

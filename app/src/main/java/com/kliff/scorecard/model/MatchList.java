@@ -1,8 +1,8 @@
 package com.kliff.scorecard.model;
 
 public class MatchList {
-    String matchid, team1, team2, team_id1, team_id2, venue, time, result, score1, score2, team1_img, team2_img, wicket1, wicket2;
-
+    String matchid, team1, team2, team_id1, team_id2, venue, time, result, score1, score2, team1_img, team2_img, wicket1, wicket2, match_status;
+    String full_description;
     public String getTeam_id1() {
         return team_id1;
     }
@@ -33,6 +33,22 @@ public class MatchList {
 
     public void setWicket2(String wicket2) {
         this.wicket2 = wicket2;
+    }
+
+    public String getFull_description() {
+        return full_description;
+    }
+
+    public void setFull_description(String full_description) {
+        this.full_description = full_description;
+    }
+
+    public String getMatch_status() {
+        return match_status;
+    }
+
+    public void setMatch_status(String match_status) {
+        this.match_status = match_status;
     }
 
     public String getTeam1_img() {
