@@ -10,8 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -28,8 +26,6 @@ import com.kliff.scorecard.utils.cricinfodetailscore;
 import com.kliff.scorecard.utils.nwUtil;
 import com.kliff.scorecard.utils.tableUtil;
 
-import java.util.Objects;
-
 public class CricInfoDetailScoreFragment extends Fragment {
     private static final String TAG = "com.live_cric_scores";
     static CricInfoDetailScoreFragment ourInstance = new CricInfoDetailScoreFragment();
@@ -37,7 +33,7 @@ public class CricInfoDetailScoreFragment extends Fragment {
     private final Runnable m_Runnable = new C04503();
     private final View.OnClickListener refreshAllMacthtListener = new C04514();
     private final SwipeRefreshLayout.OnRefreshListener refreshSwipe = new C07111();
-//    ImageButton btnRefresh;
+    //    ImageButton btnRefresh;
     private TabHost host;
     private Handler mHandler;
     private SwipeRefreshLayout swipeContainer;
@@ -178,11 +174,12 @@ public class CricInfoDetailScoreFragment extends Fragment {
             Log.d(CricInfoDetailScoreFragment.TAG, "DisplayMatchesESPN - result :" + result);
             TableLayout ds_lay_tab_matches = null;
             try {
-                ds_lay_tab_matches = Objects.requireNonNull(CricInfoDetailScoreFragment.this.getView()).findViewById(R.id.ds_lay_tab_matches);
+                ds_lay_tab_matches = CricInfoDetailScoreFragment.this.getView().findViewById(R.id.ds_lay_tab_matches);
             } catch (Exception e) {
                 e.getMessage();
             }
-            ds_lay_tab_matches.removeAllViews();
+            if (ds_lay_tab_matches != null)
+                ds_lay_tab_matches.removeAllViews();
             if (result != null) {
                 try {
                     cricinfodetailscore.onPostExecute(result, ds_lay_tab_matches, CricInfoDetailScoreFragment.this.host);

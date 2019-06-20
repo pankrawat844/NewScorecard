@@ -332,8 +332,6 @@ public class MatchSummaryFragment extends Fragment {
                                 }
 
                             }
-
-
                             if (summaryAdapter != null) {
                                 summaryAdapter = null;
                                 summaryAdapter = new ScoreSummaryAdapter(modelList);
@@ -350,7 +348,6 @@ public class MatchSummaryFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
             }
         });
         if (getActivity() != null) {

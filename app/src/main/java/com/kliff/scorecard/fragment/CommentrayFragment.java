@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -56,17 +58,21 @@ public class CommentrayFragment extends Fragment {
         public void run() {
             Log.e(TAG, "isCalling: ");
             if (match_status.equals("dormant")) {
-                handler.postDelayed(m_Runnable, (long) 10000);
+                defaultLayout.setVisibility(View.VISIBLE);
+                defaultText.setText("Match is not started");
+                handler.postDelayed(m_Runnable, (long) 5000);
             } else {
                 if (match_status.equals("current")) {
                     commentaryData(url, 0);
-                    handler.postDelayed(m_Runnable, 10000);
+                    handler.postDelayed(m_Runnable, 5000);
                 } else
                     commentaryData(url, 1);
             }
             Log.e(TAG, "run: " + url);
         }
     };
+    private CardView defaultLayout;
+    private TextView defaultText;
 
 
     @Override
@@ -89,6 +95,8 @@ public class CommentrayFragment extends Fragment {
         url = "http://api.espncricinfo.com/3/match/" + matchid + "/commentary?&key=c3e20ac4-4ade-4624-8d96-e19beb44ec68&innings=1";
         modelList = new ArrayList<>();
         if (match_status.equals("dormant")) {
+            defaultLayout.setVisibility(View.VISIBLE);
+            defaultText.setText("Match is not started");
             loading.setVisibility(View.GONE);
         } else {
             if (match_status.equals("current"))
@@ -101,7 +109,7 @@ public class CommentrayFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        handler.postDelayed(this.m_Runnable, 10000);
+        handler.postDelayed(this.m_Runnable, 5000);
     }
 
     @Override
@@ -113,6 +121,8 @@ public class CommentrayFragment extends Fragment {
     private void initView(View view) {
         recylerview = view.findViewById(R.id.recylerview);
         loading = view.findViewById(R.id.loading);
+        defaultLayout = view.findViewById(R.id.default_layout);
+        defaultText = view.findViewById(R.id.default_Text);
     }
 
     private void commentaryData(String url, final int val) {
@@ -125,18 +135,8 @@ public class CommentrayFragment extends Fragment {
                         try {
 
                             modelList.clear();
-//                            if (match_status.equals("current")) {
-//                                for (int j = 0; j < response.length(); j++) {
-//                                    ScoreSummaryModel model = new ScoreSummaryModel();
-//                                    Log.e(TAG, "ruunig: ");
-//                                    JSONObject scoreCardData = response.getJSONObject(j);
-//                                    model.setBall_text("" + Html.fromHtml(scoreCardData.getString("ball_text")));
-//                                    model.setCms_text("" + Html.fromHtml(scoreCardData.getString("cms_text")));
-//                                    model.setFull_commentary("" + Html.fromHtml(scoreCardData.getString("cms_pre_text")));
-//                                    modelList.add(model);
-//                                }
-//                            }
-                                for (int j = response.length() - 1; j >= 0; j--) {
+                            if (match_status.equals("current")) {
+                                for (int j = 0; j < response.length(); j++) {
                                     ScoreSummaryModel model = new ScoreSummaryModel();
                                     Log.e(TAG, "ruunig: ");
                                     JSONObject scoreCardData = response.getJSONObject(j);
@@ -145,6 +145,16 @@ public class CommentrayFragment extends Fragment {
                                     model.setFull_commentary("" + Html.fromHtml(scoreCardData.getString("cms_pre_text")));
                                     modelList.add(model);
                                 }
+                            }
+                            for (int j = response.length() - 1; j >= 0; j--) {
+                                ScoreSummaryModel model = new ScoreSummaryModel();
+                                Log.e(TAG, "ruunig: ");
+                                JSONObject scoreCardData = response.getJSONObject(j);
+                                model.setBall_text("" + Html.fromHtml(scoreCardData.getString("ball_text")));
+                                model.setCms_text("" + Html.fromHtml(scoreCardData.getString("cms_text")));
+                                model.setFull_commentary("" + Html.fromHtml(scoreCardData.getString("cms_pre_text")));
+                                modelList.add(model);
+                            }
 
                             if (summaryAdapter != null) {
                                 summaryAdapter = null;
