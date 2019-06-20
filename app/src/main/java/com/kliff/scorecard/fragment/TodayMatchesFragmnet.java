@@ -78,6 +78,8 @@ public class TodayMatchesFragmnet extends Fragment {
                 Intent intent = new Intent(getActivity(), FullScoreDetailsActivity.class);
                 intent.putExtra("matchid", list.get(position).getMatchid());
                 intent.putExtra("match_status", list.get(position).getMatch_status());
+                intent.putExtra("status", list.get(position).getResult());
+                intent.putExtra("full_description", list.get(position).getFull_description());
                 startActivity(intent);
             }
         }));
@@ -154,6 +156,7 @@ public class TodayMatchesFragmnet extends Fragment {
                         matchList.setTeam2_img("http://api.espncricinfo.com" + series.getJSONObject("team").getJSONObject(data.getJSONObject(j).getJSONObject("match").getString("team2_id")).getString("f"));
                         matchList.setMatchid(data.getJSONObject(j).getString("object_id"));
                         matchList.setMatch_status(data.getJSONObject(j).getJSONObject("match").getString("match_status"));
+                        matchList.setFull_description(data.getJSONObject(j).getString("full_description"));
                         matchList.setVenue(data.getJSONObject(j).getString("description"));
                         matchList.setResult(data.getJSONObject(j).getJSONObject("live").getString("status"));
 

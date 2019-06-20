@@ -40,8 +40,8 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.View
         holder.score2.setText(list.get(position).getScore2());
         holder.wicket1.setText(list.get(position).getWicket1());
         holder.wicket2.setText(list.get(position).getWicket2());
-        Picasso.get().load(list.get(position).getTeam1_img()).into(holder.team1_img);
-        Picasso.get().load(list.get(position).getTeam2_img()).into(holder.team2_img);
+        Picasso.get().load(list.get(position).getTeam1_img()).placeholder(R.drawable.ic_iconfinder_cricket_993999).into(holder.team1_img);
+        Picasso.get().load(list.get(position).getTeam2_img()).placeholder(R.drawable.ic_iconfinder_cricket_993999).into(holder.team2_img);
     }
 
     @Override

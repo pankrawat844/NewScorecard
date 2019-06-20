@@ -176,7 +176,12 @@ public class CricInfoDetailScoreFragment extends Fragment {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             Log.d(CricInfoDetailScoreFragment.TAG, "DisplayMatchesESPN - result :" + result);
-            TableLayout ds_lay_tab_matches = Objects.requireNonNull(CricInfoDetailScoreFragment.this.getView()).findViewById(R.id.ds_lay_tab_matches);
+            TableLayout ds_lay_tab_matches = null;
+            try {
+                ds_lay_tab_matches = Objects.requireNonNull(CricInfoDetailScoreFragment.this.getView()).findViewById(R.id.ds_lay_tab_matches);
+            } catch (Exception e) {
+                e.getMessage();
+            }
             ds_lay_tab_matches.removeAllViews();
             if (result != null) {
                 try {
